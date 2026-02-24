@@ -5,6 +5,7 @@ import ReviewCard from "@/components/review-card";
 import ImageSlideshow from "@/components/image-slideshow";
 import Image from 'next/image';
 import FlavourCard from "@/components/flavour-card";
+import { CustomSectionDivider } from "@/components/custom-section-divider";
 
 export default function Home() {
   return (
@@ -58,6 +59,11 @@ export default function Home() {
         size={142}
         title={<>Roasted<br/>Almonds</>}>
       </FlavourCard>
+
+      <h1 className="text-gold font-bold my-8">SECTION DIVIDER</h1>
+      <div className="w-full max-w-lg">
+        <CustomSectionDivider />
+      </div>
       </>
     </main>
   );
