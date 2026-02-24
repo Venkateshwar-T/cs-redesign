@@ -22,7 +22,7 @@ export default function Home() {
       </div>
       
       <h1 className="text-[#F3CF42] font-bold my-8">SEARCH BAR:</h1>
-      <div className="w-96">
+      <div className="w-[48rem]">
         <SearchBar placeholder="What are you looking for?" />
       </div>
       </>
