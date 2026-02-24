@@ -61,7 +61,7 @@ export default function Home() {
       </FlavourCard>
 
       <h1 className="text-gold font-bold my-8">SECTION DIVIDER</h1>
-      <div className="w-full max-w-lg">
+      <div className="w-full">
         <CustomSectionDivider />
       </div>
       </>
