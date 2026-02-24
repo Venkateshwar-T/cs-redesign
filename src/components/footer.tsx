@@ -21,17 +21,19 @@ export function Footer() {
           <CustomButton className="w-60 justify-start rounded-full pl-6" animateArrow length={36} showArrow>
             Join the Community
           </CustomButton>
-          <div className="flex flex-col gap-6 mt-auto pt-10">
+        </div>
+
+        {/* Right Section */}
+        <div className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
+          {/* Logos Column */}
+          <div className="flex flex-col gap-6 col-span-2 sm:col-span-3 lg:col-span-1">
             <Image src="https://placehold.co/120x40/000000/FFFFFF?text=LOGO" alt="Logo" width={120} height={40} className="opacity-70" />
             <div className="flex items-center gap-3">
               <span className="text-sm text-[#A3A3A3]">Driven by</span>
               <Image src="https://placehold.co/80x30/000000/FFFFFF?text=DRIVEN_BY" alt="Driven by Logo" width={80} height={30} />
             </div>
           </div>
-        </div>
-
-        {/* Right Section */}
-        <div className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-4 gap-8">
+          
           {/* Contact Column */}
           <div className="flex flex-col gap-4">
             <h3 className="font-bold uppercase tracking-wider text-gold">Contact</h3>
