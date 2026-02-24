@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
+        body: ['var(--font-inter)'],
         headline: ['Inter', 'sans-serif'],
         code: ['monospace'],
         fredoka: ['Fredoka', 'sans-serif'],

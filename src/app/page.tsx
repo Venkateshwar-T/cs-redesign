@@ -6,10 +6,14 @@ import ImageSlideshow from "@/components/image-slideshow";
 import Image from 'next/image';
 import FlavourCard from "@/components/flavour-card";
 import { CustomSectionDivider } from "@/components/custom-section-divider";
+import CategoryCard from "@/components/category-card";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export default function Home() {
+  const categoryImage = PlaceHolderImages.find(p => p.id === 'category-card-1');
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4">
+    <main className="flex min-h-screen flex-col items-center justify-center p-0">
       <>
       <h1 className="text-gold font-bold my-8">INPUT FIELDS</h1>
       <div className="flex flex-col gap-8">
@@ -54,15 +58,29 @@ export default function Home() {
       <ImageSlideshow images={["/choco1.png", "/choco2.png", "/choco3.png", "/choco4.png"]}></ImageSlideshow>
       
       <h1 className="text-gold font-bold my-8">FLAVOUR CARDS</h1>
-      <FlavourCard src="/almonds.png" 
-        alt="Roasted Almonds" 
+      <FlavourCard src="/almonds.png"
+        alt="Roasted Almond" 
         size={142}
-        title={<>Roasted<br/>Almonds</>}>
+        title={<>Roasted<br/>Almond</>}
+        className="mb-8"
+        >
       </FlavourCard>
 
-      <h1 className="text-gold font-bold my-8">SECTION DIVIDER</h1>
+      <h1 className="text-gold font-bold mt-16">SECTION DIVIDERS</h1>
       <div className="w-full">
-        <CustomSectionDivider />
+        <CustomSectionDivider topTitle="CAPTURED" bottomTitle="MOMENTS." offset={120}/>
+        <CustomSectionDivider topTitle="SWEET" bottomTitle="COMMENDATIONS."  offset={120}/>
+      </div>
+      
+      <h1 className="text-gold font-bold my-8">CATEGORY CARD</h1>
+      <div className="w-80 mb-8">
+        {categoryImage && (
+          <CategoryCard 
+            title="Luxury" 
+            subtitle="Chocolate" 
+            imageSrc={categoryImage.imageUrl}
+          />
+        )}
       </div>
       </>
     </main>
