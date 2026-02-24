@@ -17,7 +17,7 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
           className
         )}
       >
-        <Image src="/search_icon.png" alt="Search Icon" width={28} height={28} draggable={false}/>
+        <Image src="/search_icon.png" alt="Search icon" width={28} height={28} draggable={false}/>
         <input
           ref={ref}
           className="ml-3 w-full bg-transparent text-gray-800 placeholder:text-[#818181] font-semibold focus:outline-none"

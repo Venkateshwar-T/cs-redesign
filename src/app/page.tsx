@@ -3,6 +3,7 @@ import { CustomInput } from "@/components/custom-input";
 import { SearchBar } from "@/components/search-bar";
 import ReviewCard from "@/components/review-card";
 import ImageSlideshow from "@/components/image-slideshow";
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -14,22 +15,26 @@ export default function Home() {
         <CustomInput className="w-60 h-12" type="password" showPasswordToggle placeholder="PASSWORD"/>
         <CustomInput className="w-60 h-12" type="password" showPasswordToggle placeholder="CONFIRM PASSWORD"/>
       </div>
+
       <h1 className="text-[#F3CF42] font-bold my-8">BUTTONS</h1>
+
       <div className="flex flex-col items-center gap-4">
         <CustomButton className="w-36 rounded-full">Enquire Now</CustomButton>
         <CustomButton className="w-60" showArrow>Sign in</CustomButton>
         <CustomButton className="w-60" showArrow>Create Account</CustomButton>
         <CustomButton className="w-60" showArrow>Send Reset Link</CustomButton>
         <CustomButton className="w-60 justify-start rounded-full pl-6" animateArrow length={36} showArrow>Join the Community</CustomButton>
-        <CustomButton className="w-60 bg-white hover:bg-white/90"leadingIcon={<img src="/google.svg" className="h-4 w-4" />}>Continue with Google</CustomButton>
+        <CustomButton className="w-60 bg-white hover:bg-white/90"leadingIcon={<Image src="/google.png" alt="Google" width={16} height={16} draggable={false}/>}>Continue with Google</CustomButton>
       </div>
       
       <h1 className="text-[#F3CF42] font-bold my-8">SEARCH BAR</h1>
+
       <div className="w-[36rem]">
         <SearchBar placeholder="What are you looking for?" />
       </div>
 
-      <h1 className="text-[#F3CF42] font-bold my-8">REVIEW CARD</h1>
+      <h1 className="text-[#F3CF42] font-bold my-8">REVIEW CARDS</h1>
+
       <div className="flex row gap-6">
         <ReviewCard className="w-[24rem]"
         stars={5} 
@@ -42,8 +47,9 @@ export default function Home() {
         reviewerName="SUDHASMITA SAHOO"
         />
       </div>
+
       <h1 className="text-[#F3CF42] font-bold my-8">IMAGE SLDESHOW</h1>
-      <ImageSlideshow images={["/choco1.png/", "/choco2.png/", "/choco3.png/", "/choco4.png/"]}></ImageSlideshow>
+      <ImageSlideshow images={["/choco1.png", "/choco2.png", "/choco3.png", "/choco4.png"]}></ImageSlideshow>
       </>
     </main>
   );

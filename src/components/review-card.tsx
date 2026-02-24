@@ -29,13 +29,13 @@ const ReviewCard = React.forwardRef<HTMLDivElement, ReviewCardProps>(
       <div
         ref={ref}
         className={cn(
-          "relative bg-white rounded-[2rem] shadow-[4px_4px_0_#F3CF42] p-6 text-black flex flex-col gap-4",
+          "group relative bg-white rounded-[2rem] shadow-[4px_4px_0_#F3CF42] p-6 text-black flex flex-col gap-4",
           className
         )}
         {...props}
       >
         <span 
-          className="font-fredoka absolute -top-11 right-1 text-[10rem] text-[#F3CF42] leading-none select-none pointer-events-none"
+          className="font-fredoka absolute -top-11 right-1 text-[10rem] text-[#F3CF42] group-hover:animate-wiggle leading-none select-none pointer-events-none"
         >
           ”
         </span>

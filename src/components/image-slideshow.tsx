@@ -30,6 +30,7 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
           key={src}
           src={src}
           alt={`Slide ${index + 1}`}
+          draggable={false}
           fill
           className={`object-cover transition-opacity duration-1000 ease-in-out ${
             index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
