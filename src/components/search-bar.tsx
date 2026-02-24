@@ -17,7 +17,7 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
           className
         )}
       >
-        <Search className="h-8 w-8 text-gray-400" />
+        <Search className="h-6 w-6 text-gray-400" />
         <input
           ref={ref}
           className="ml-3 w-full bg-transparent text-gray-800 placeholder:text-[#818181] font-semibold focus:outline-none"

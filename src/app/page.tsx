@@ -1,6 +1,7 @@
 import { CustomButton } from "@/components/custom-button";
 import { CustomInput } from "@/components/custom-input";
 import { SearchBar } from "@/components/search-bar";
+import SolidCard from "@/components/solid-card";
 
 export default function Home() {
   return (
@@ -22,8 +23,13 @@ export default function Home() {
       </div>
       
       <h1 className="text-[#F3CF42] font-bold my-8">SEARCH BAR:</h1>
-      <div className="w-[48rem]">
+      <div className="w-[36rem]">
         <SearchBar placeholder="What are you looking for?" />
+      </div>
+
+      <h1 className="text-[#F3CF42] font-bold my-8">SOLID CARD:</h1>
+      <div className="w-[24rem]">
+        <SolidCard />
       </div>
       </>
     </main>
