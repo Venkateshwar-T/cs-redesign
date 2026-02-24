@@ -1,3 +1,5 @@
+import { CustomButton } from "@/components/ui/custom-button";
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4">
@@ -7,6 +9,9 @@ export default function Home() {
       <h2 className="text-8xl font-extrabold tracking-tighter text-primary">
         Choco Smiley
       </h2>
+      <div className="mt-8">
+        <CustomButton>Get Started</CustomButton>
+      </div>
     </main>
   );
 }
