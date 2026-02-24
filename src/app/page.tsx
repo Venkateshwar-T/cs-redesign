@@ -52,8 +52,12 @@ export default function Home() {
       <h1 className="text-gold font-bold my-8">IMAGE SLDESHOW</h1>
       <ImageSlideshow images={["/choco1.png", "/choco2.png", "/choco3.png", "/choco4.png"]}></ImageSlideshow>
       
-      <h1 className="text-gold font-bold my-8">IMAGE SLDESHOW</h1>
-      <FlavourCard src="/almonds.png" alt="Almonds"></FlavourCard>
+      <h1 className="text-gold font-bold my-8">FLAVOUR CARDS</h1>
+      <FlavourCard src="/almonds.png" 
+        alt="Roasted Almonds" 
+        size={142}
+        title={<>Roasted<br/>Almonds</>}>
+      </FlavourCard>
       </>
     </main>
   );
