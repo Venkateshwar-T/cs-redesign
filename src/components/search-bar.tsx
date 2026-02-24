@@ -12,7 +12,7 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
     return (
       <div
         className={cn(
-          "flex h-12 w-full items-center rounded-full bg-white px-6",
+          "flex h-12 w-full items-center rounded-full bg-white pr-2 pl-6",
           className
         )}
       >
@@ -22,9 +22,9 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
           className="ml-3 w-full bg-transparent text-gray-800 placeholder:text-gray-400 focus:outline-none"
           {...props}
         />
-        <span className="ml-3 text-sm font-bold text-[#5D2B79]">
+        <button className="ml-3 flex-shrink-0 rounded-full bg-[#F3CF42] px-5 py-2 text-sm font-bold text-[#5D2B79] transition-colors hover:bg-[#F3CF42]/90">
           SEARCH
-        </span>
+        </button>
       </div>
     );
   }
