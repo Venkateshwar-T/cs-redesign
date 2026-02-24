@@ -31,7 +31,7 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
     return (
       <Comp
         className={cn(
-          "group inline-flex items-center justify-center whitespace-nowrap rounded-xl bg-[#F3CF42] px-0 py-3 text-sm font-semibold text-[#5D2B79] transition-colors hover:bg-[#F3CF42]/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+          "group inline-flex items-center justify-center whitespace-nowrap rounded-xl bg-gold px-0 py-3 text-sm font-semibold text-purple transition-colors hover:bg-gold/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
           className
         )}
         ref={ref}

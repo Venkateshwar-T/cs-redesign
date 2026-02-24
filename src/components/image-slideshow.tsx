@@ -50,7 +50,7 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
             aria-label={`Go to image ${index + 1}`}
             className={`h-[0.3rem] rounded-md transition-all duration-300 ease-in-out ${
               index === currentIndex 
-                ? 'w-10 bg-[#F3CF42]' 
+                ? 'w-10 bg-gold' 
                 : 'w-4 bg-white/30 hover:bg-white/60'
             }`}
           />

@@ -17,6 +17,8 @@ export default {
         lora: ['Lora', 'serif'],
       },
       colors: {
+        gold: '#F3CF42',
+        purple: '#5D2B79',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

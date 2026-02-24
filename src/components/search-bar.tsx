@@ -23,7 +23,7 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
           className="ml-3 w-full bg-transparent text-gray-800 placeholder:text-[#818181] font-semibold focus:outline-none"
           {...props}
         />
-        <CustomButton className="bg-transparent py-1 px-1 text-sm hover:bg-transparent hover:text-[#5D2B79]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5D2B79]/20">SEARCH</CustomButton>
+        <CustomButton className="bg-transparent py-1 px-1 text-sm hover:bg-transparent hover:text-purple/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple/20">SEARCH</CustomButton>
       </div>
     );
   }

@@ -9,7 +9,7 @@ export interface ReviewCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const StarIcon = () => (
   <svg 
-    className="w-5 h-5 fill-[#F3CF42]" 
+    className="w-5 h-5 fill-gold" 
     viewBox="0 0 24 24" 
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -29,13 +29,13 @@ const ReviewCard = React.forwardRef<HTMLDivElement, ReviewCardProps>(
       <div
         ref={ref}
         className={cn(
-          "group relative bg-white rounded-[2rem] shadow-[4px_4px_0_#F3CF42] p-6 text-black flex flex-col gap-4",
+          "group relative bg-white rounded-[2rem] shadow-[4px_4px_0_theme(colors.gold)] p-6 text-black flex flex-col gap-4",
           className
         )}
         {...props}
       >
         <span 
-          className="font-fredoka absolute -top-11 right-1 text-[10rem] text-[#F3CF42] group-hover:animate-wiggle leading-none select-none pointer-events-none"
+          className="font-fredoka absolute -top-11 right-1 text-[10rem] text-gold group-hover:animate-wiggle leading-none select-none pointer-events-none"
         >
           ”
         </span>
@@ -47,7 +47,7 @@ const ReviewCard = React.forwardRef<HTMLDivElement, ReviewCardProps>(
         </div>
 
         <p 
-          className="font-lora text-[#5D2B79] font-semibold italic text-lg"
+          className="font-lora text-purple font-semibold italic text-lg"
         >
           {reviewText}
         </p>
@@ -55,7 +55,7 @@ const ReviewCard = React.forwardRef<HTMLDivElement, ReviewCardProps>(
         <hr className="border-t border-black w-full" />
 
         <div className="flex justify-between items-center text-sm w-full">
-          <span className="uppercase font-fredoka text-[1rem] text-[#5D2B79] font-semibold tracking-wider">{reviewerName}</span>
+          <span className="uppercase font-fredoka text-[1rem] text-purple font-semibold tracking-wider">{reviewerName}</span>
           <span className="text-[#A3A3A3] text-sm font-medium">Reviewed on Google</span>
         </div>
       </div>

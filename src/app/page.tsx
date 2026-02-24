@@ -9,14 +9,14 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4">
       <>
-      <h1 className="text-[#F3CF42] font-bold my-8">INPUT FIELDS</h1>
+      <h1 className="text-gold font-bold my-8">INPUT FIELDS</h1>
       <div className="flex flex-col gap-8">
         <CustomInput className="w-60 h-12" placeholder="EMAIL OR PHONE"/>
         <CustomInput className="w-60 h-12" type="password" showPasswordToggle placeholder="PASSWORD"/>
         <CustomInput className="w-60 h-12" type="password" showPasswordToggle placeholder="CONFIRM PASSWORD"/>
       </div>
 
-      <h1 className="text-[#F3CF42] font-bold my-8">BUTTONS</h1>
+      <h1 className="text-gold font-bold my-8">BUTTONS</h1>
 
       <div className="flex flex-col items-center gap-4">
         <CustomButton className="w-36 rounded-full">Enquire Now</CustomButton>
@@ -27,13 +27,13 @@ export default function Home() {
         <CustomButton className="w-60 bg-white hover:bg-white/90"leadingIcon={<Image src="/google.png" alt="Google" width={16} height={16} draggable={false}/>}>Continue with Google</CustomButton>
       </div>
       
-      <h1 className="text-[#F3CF42] font-bold my-8">SEARCH BAR</h1>
+      <h1 className="text-gold font-bold my-8">SEARCH BAR</h1>
 
       <div className="w-[36rem]">
         <SearchBar placeholder="What are you looking for?" />
       </div>
 
-      <h1 className="text-[#F3CF42] font-bold my-8">REVIEW CARDS</h1>
+      <h1 className="text-gold font-bold my-8">REVIEW CARDS</h1>
 
       <div className="flex row gap-6">
         <ReviewCard className="w-[24rem]"
@@ -48,7 +48,7 @@ export default function Home() {
         />
       </div>
 
-      <h1 className="text-[#F3CF42] font-bold my-8">IMAGE SLDESHOW</h1>
+      <h1 className="text-gold font-bold my-8">IMAGE SLDESHOW</h1>
       <ImageSlideshow images={["/choco1.png", "/choco2.png", "/choco3.png", "/choco4.png"]}></ImageSlideshow>
       </>
     </main>
