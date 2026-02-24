@@ -4,6 +4,7 @@ import { SearchBar } from "@/components/search-bar";
 import ReviewCard from "@/components/review-card";
 import ImageSlideshow from "@/components/image-slideshow";
 import Image from 'next/image';
+import FlavourCard from "@/components/flavour-card";
 
 export default function Home() {
   return (
@@ -50,6 +51,9 @@ export default function Home() {
 
       <h1 className="text-gold font-bold my-8">IMAGE SLDESHOW</h1>
       <ImageSlideshow images={["/choco1.png", "/choco2.png", "/choco3.png", "/choco4.png"]}></ImageSlideshow>
+      
+      <h1 className="text-gold font-bold my-8">IMAGE SLDESHOW</h1>
+      <FlavourCard src="/almonds.png" alt="Almonds"></FlavourCard>
       </>
     </main>
   );

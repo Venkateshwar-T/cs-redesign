@@ -29,7 +29,7 @@ const ReviewCard = React.forwardRef<HTMLDivElement, ReviewCardProps>(
       <div
         ref={ref}
         className={cn(
-          "group relative bg-white rounded-[2rem] shadow-[4px_4px_0_theme(colors.gold)] p-6 text-black flex flex-col gap-4",
+          "group relative bg-white rounded-[2rem] shadow-[4px_4px_0_theme(colors.gold)] p-6 text-black flex flex-col gap-4 transition-transform duration-300 hover:scale-105",
           className
         )}
         {...props}
