@@ -72,14 +72,45 @@ export default function Home() {
         <CustomSectionDivider topTitle="SWEET" bottomTitle="COMMENDATIONS."  offset={120}/>
       </div>
       
-      <h1 className="text-gold font-bold my-8">CATEGORY CARD</h1>
-      <div className="w-80 mb-8">
+      <h1 className="text-gold font-bold my-8">CATEGORY CARDS</h1>
+      <div className="flex row gap-4 mb-8">
         {categoryImage && (
-          <CategoryCard 
-            title="Luxury" 
-            subtitle="Chocolate" 
+          <>
+          <CategoryCard
+            title="Hampers"
+            subtitle="Gourmet"
             imageSrc={categoryImage.imageUrl}
-          />
+            className="w-60 h-90" />
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-row gap-4">
+              <CategoryCard
+                title="Hampers"
+                subtitle="Gourmet"
+                imageSrc={categoryImage.imageUrl}
+                className="w-80 h-40" />
+              <CategoryCard
+                title="Hampers"
+                subtitle="Gourmet"
+                imageSrc={categoryImage.imageUrl}
+                className="w-40 h-40" />
+            </div>
+            <CategoryCard
+                title="Hampers"
+                subtitle="Gourmet"
+                imageSrc={categoryImage.imageUrl}
+                className="w-90 h-40" />
+          </div>
+          <CategoryCard
+            title="Hampers"
+            subtitle="Gourmet"
+            imageSrc={categoryImage.imageUrl}
+            className="w-40 h-90" />
+          <CategoryCard
+            title="Hampers"
+            subtitle="Gourmet"
+            imageSrc={categoryImage.imageUrl}
+            className="w-40 h-90" />
+          </>
         )}
       </div>
       </>
