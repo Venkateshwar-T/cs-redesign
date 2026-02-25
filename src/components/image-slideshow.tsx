@@ -22,7 +22,7 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
   if (!images || images.length === 0) return null;
 
   return (
-    <div className={`relative h-[400px] w-[600px] rounded-[2rem] overflow-hidden bg-gray-900 ${className}`}>
+    <div className={`relative h-[400px] w-[600px] scale-[0.6] md:scale-[0.85] lg:scale-[1] rounded-[2rem] overflow-hidden bg-gray-900 ${className}`}>
       
       {/* Images */}
       {images.map((src, index) => (
@@ -42,7 +42,7 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none" />
 
       {/* Indicators */}
-      <div className="absolute bottom-7 left-8 flex items-center space-x-1 z-20">
+      <div className="absolute bottom-4 left-6 md:bottom-7 md:left-8 flex items-center space-x-1 z-20">
         {images.map((_, index) => (
           <button
             key={index}

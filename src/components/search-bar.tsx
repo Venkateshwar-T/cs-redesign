@@ -13,7 +13,7 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
     return (
       <div
         className={cn(
-          "flex h-12 w-full items-center rounded-full bg-white pr-2 px-4",
+          "flex h-10 md:h-12 w-[100%] items-center rounded-full bg-white pr-2 px-4",
           className
         )}
       >

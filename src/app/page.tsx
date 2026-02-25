@@ -25,29 +25,27 @@ export default function Home() {
       <h1 className="text-gold font-bold my-8">BUTTONS</h1>
 
       <div className="flex flex-col items-center gap-4">
-        <CustomButton className="w-36 rounded-full">Enquire Now</CustomButton>
-        <CustomButton className="w-60" showArrow>Sign in</CustomButton>
-        <CustomButton className="w-60" showArrow>Create Account</CustomButton>
-        <CustomButton className="w-60" showArrow>Send Reset Link</CustomButton>
-        <CustomButton className="w-60 justify-start rounded-full pl-6" animateArrow length={24} showArrow>Join the Community</CustomButton>
-        <CustomButton className="w-60 bg-white hover:bg-white/90"leadingIcon={<Image src="/google.png" alt="Google" width={16} height={16} draggable={false}/>}>Continue with Google</CustomButton>
+        <CustomButton className="w-36 rounded-full scale-[0.9] md:scale-[1]">Enquire Now</CustomButton>
+        <CustomButton className="w-60 scale-[0.9] md:scale-[1]" showArrow>Sign in</CustomButton>
+        <CustomButton className="w-60 scale-[0.9] md:scale-[1]" showArrow>Create Account</CustomButton>
+        <CustomButton className="w-60 scale-[0.9] md:scale-[1]" showArrow>Send Reset Link</CustomButton>
+        <CustomButton className="w-60 justify-start rounded-full pl-6 scale-[0.9] md:scale-[1]" animateArrow length={24} showArrow>Join the Community</CustomButton>
+        <CustomButton className="w-60 bg-white hover:bg-white/90 scale-[0.9] md:scale-[1]"leadingIcon={<Image src="/google.png" alt="Google" width={16} height={16} draggable={false}/>}>Continue with Google</CustomButton>
       </div>
       
       <h1 className="text-gold font-bold my-8">SEARCH BAR</h1>
 
-      <div className="w-[36rem]">
-        <SearchBar placeholder="What are you looking for?" />
-      </div>
+        <SearchBar className="w-[80%] md:w-[70%] lg:w-[36rem]" placeholder="What are you looking for?" />
 
       <h1 className="text-gold font-bold my-8">REVIEW CARDS</h1>
 
       <div className="flex row flex-wrap gap-6">
-        <ReviewCard className="w-[24rem]"
+        <ReviewCard className=""
         stars={5} 
         reviewText="“The chocolates are very sweet,soft and have that hint of dark chocolate...they are absolutely amazing...its a must try!!”"
         reviewerName="Amrutha"
         />
-        <ReviewCard className="w-[24rem]"
+        <ReviewCard className=""
         stars={5} 
         reviewText="“Melts in mouth !!!! Just tried the chocolate with nuts - lovedddddd it. Gotta try the plain chocolate!”"
         reviewerName="SUDHASMITA SAHOO"
@@ -68,12 +66,12 @@ export default function Home() {
 
       <h1 className="text-gold font-bold mt-16">SECTION DIVIDERS</h1>
       <div className="w-full">
-        <CustomSectionDivider topTitle="CAPTURED" bottomTitle="MOMENTS." offset={120}/>
-        <CustomSectionDivider topTitle="SWEET" bottomTitle="COMMENDATIONS."  offset={120}/>
+        <CustomSectionDivider topTitle="CAPTURED" bottomTitle="MOMENTS."/>
+        <CustomSectionDivider topTitle="SWEET" bottomTitle="COMMENDATIONS."/>
       </div>
       
       <h1 className="text-gold font-bold my-8">CATEGORY CARDS</h1>
-      <div className="flex flex-row flex-wrap gap-4 mb-8">
+      {/* <div className="flex flex-row flex-wrap gap-4 mb-8">
         {categoryImage && (
           <>
           <CategoryCard
@@ -112,7 +110,7 @@ export default function Home() {
             className="w-40 h-90" />
           </>
         )}
-      </div>
+      </div> */}
       </>
     </main>
   );

@@ -9,29 +9,29 @@ import Link from 'next/link';
 export function Footer() {
   return (
     <footer className="bg-black border-gold border-t-[1px] text-white w-full px-10">
-      <div className="flex flex-col py-8 lg:py-12">
+      <div className="flex flex-col py-4 md:py-8 lg:py-12">
         {/* INDULGE IN THE EXCEPTIONAL. and Button */}
-        <div className="flex flex-row flex-wrap gap-2 md:gap-4">
-          <p className="text-2xl md:text-4xl lg:text-6xl text-white font-semibold italic">INDULGE IN THE</p>
-          <p className="text-2xl md:text-4xl lg:text-6xl text-gold font-[800]">EXCEPTIONAL.</p>
+        <div className="flex flex-col md:flex-row gap-0 md:gap-4">
+          <p className="text-3xl md:text-4xl lg:text-6xl text-white font-semibold italic">INDULGE IN THE</p>
+          <p className="text-3xl md:text-4xl lg:text-6xl text-gold font-[800]">EXCEPTIONAL.</p>
         </div>
         <h2 className="text-xs md:text-[1rem] text-[#A3A3A3] font-semibold pt-1">Receive early access to seasonal collections and bespoke flavor releases.</h2>
-        <CustomButton className="w-60 justify-start rounded-full pl-6 my-8 mx-4 lg:mx-6" animateArrow length={24} showArrow>Join the Community</CustomButton>
+        <CustomButton className="w-60  justify-start rounded-full pl-6 my-4 md:my-8 py-2 md:py-3 mx-0 md:mx-4 lg:mx-6" animateArrow length={24} showArrow>Join the Community</CustomButton>
         {/* Logos and Links */}
-        <div className="flex flex-col md:flex-row gap-4 md:gap-0 justify-between mx-4 lg:mx-6 font-poppins">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-0 justify-between mx-0 md:mx-4 lg:mx-6 font-poppins">
           {/* Logos */}
           <div className="flex flex-col gap-1 md:gap-0">
             <Image 
             src={'/Choco Smiley Logo.png'} 
             alt='Choco Smiley Logo' width={180} height={180} 
             draggable={false}
-            className="w-24 sm:w-32 md:w-36 lg:w-48 h-auto" />
+            className="w-36 lg:w-48 h-auto" />
             <p className="mx-2 mb-2 text-xs lg:text-sm">Driven By</p>
             <Image 
             src={'/Choco Smiley Logo.png'} 
             alt='Choco Smiley Logo' width={180} height={180} 
             draggable={false}
-            className="w-24 sm:w-32 md:w-36 lg:w-48 h-auto" />
+            className="w-36 lg:w-48 h-auto" />
           </div>
           {/* Links Section */}
           <div className="flex flex-col gap-1 md:gap-0">
