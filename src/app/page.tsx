@@ -41,7 +41,7 @@ export default function Home() {
 
       <h1 className="text-gold font-bold my-8">REVIEW CARDS</h1>
 
-      <div className="flex row gap-6">
+      <div className="flex row flex-wrap gap-6">
         <ReviewCard className="w-[24rem]"
         stars={5} 
         reviewText="“The chocolates are very sweet,soft and have that hint of dark chocolate...they are absolutely amazing...its a must try!!”"
@@ -73,7 +73,7 @@ export default function Home() {
       </div>
       
       <h1 className="text-gold font-bold my-8">CATEGORY CARDS</h1>
-      <div className="flex row gap-4 mb-8">
+      <div className="flex flex-row flex-wrap gap-4 mb-8">
         {categoryImage && (
           <>
           <CategoryCard
