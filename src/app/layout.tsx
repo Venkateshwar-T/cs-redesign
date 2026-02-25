@@ -1,5 +1,6 @@
 import type {Metadata} from 'next';
 import './globals.css';
+import { Poppins, Fredoka, Lora } from "next/font/google";
 import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
@@ -7,13 +8,28 @@ export const metadata: Metadata = {
   description: 'A minimalist display page showing "Hello" and "Choco Smiley".',
 };
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
+});
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-lora",
+});
+const fredoka = Fredoka({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-fredoka",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${poppins.variable} ${lora.variable} ${fredoka.variable}`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />

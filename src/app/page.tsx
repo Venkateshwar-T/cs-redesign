@@ -29,7 +29,7 @@ export default function Home() {
         <CustomButton className="w-60" showArrow>Sign in</CustomButton>
         <CustomButton className="w-60" showArrow>Create Account</CustomButton>
         <CustomButton className="w-60" showArrow>Send Reset Link</CustomButton>
-        <CustomButton className="w-60 justify-start rounded-full pl-6" animateArrow length={36} showArrow>Join the Community</CustomButton>
+        <CustomButton className="w-60 justify-start rounded-full pl-6" animateArrow length={24} showArrow>Join the Community</CustomButton>
         <CustomButton className="w-60 bg-white hover:bg-white/90"leadingIcon={<Image src="/google.png" alt="Google" width={16} height={16} draggable={false}/>}>Continue with Google</CustomButton>
       </div>
       

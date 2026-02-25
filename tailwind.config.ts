@@ -13,8 +13,9 @@ export default {
         body: ['var(--font-inter)'],
         headline: ['Inter', 'sans-serif'],
         code: ['monospace'],
-        fredoka: ['Fredoka', 'sans-serif'],
-        lora: ['Lora', 'serif'],
+        poppins: ['var(--font-poppins)'],
+        fredoka: ['var(--font-fredoka)'],
+        lora: ['var(--font-lora)'],
       },
       colors: {
         gold: '#F3CF42',
