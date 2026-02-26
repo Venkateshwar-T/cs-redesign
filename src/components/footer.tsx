@@ -16,7 +16,7 @@ export function Footer() {
           <p className="text-3xl md:text-4xl lg:text-6xl text-gold font-[800]">EXCEPTIONAL.</p>
         </div>
         <h2 className="text-xs md:text-[1rem] text-[#A3A3A3] font-semibold pt-1">Receive early access to seasonal collections and bespoke flavor releases.</h2>
-        <CustomButton className="w-60  justify-start rounded-full pl-6 my-4 md:my-8 py-2 md:py-3 mx-0 md:mx-4 lg:mx-6" animateArrow length={24} showArrow>Join the Community</CustomButton>
+        <CustomButton className="w-60 justify-start rounded-full pl-6 my-4 md:my-8 py-2 md:py-3 mx-0 md:mx-4 lg:mx-6" animateArrow length={24} showArrow>Join the Community</CustomButton>
         {/* Logos and Links */}
         <div className="flex flex-col md:flex-row gap-4 md:gap-0 justify-between mx-0 md:mx-4 lg:mx-6 font-poppins">
           {/* Logos */}

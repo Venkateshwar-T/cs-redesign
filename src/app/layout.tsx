@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import './globals.css';
 import { Poppins, Fredoka, Lora } from "next/font/google";
 import { Footer } from '@/components/footer';
+import { Navbar } from '@/components/navbar';
 
 export const metadata: Metadata = {
   title: 'CS Redesign',
@@ -36,7 +37,8 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Inter&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased bg-background text-foreground flex flex-col min-h-screen">
-        <div className='flex-grow'>
+        <Navbar />
+        <div className='flex-grow pt-0'>
           {children}
         </div>
         <Footer />
