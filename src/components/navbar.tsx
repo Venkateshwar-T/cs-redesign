@@ -4,9 +4,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CustomButton } from './custom-button';
-import { FaInstagram, FaFacebookF } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
+import { FiFacebook } from 'react-icons/fi';
 import { cn } from '@/lib/utils';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User, HelpCircle, ShieldCheck, FileText } from 'lucide-react';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,7 +15,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -24,34 +25,36 @@ export function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4 md:px-10",
-        isScrolled ? "bg-purple shadow-lg" : "bg-transparent"
+        isScrolled ? "bg-purple shadow-md" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Left Side: Logos */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           <Link href="/">
             <Image
               src="/Choco Smiley Logo.png"
               alt="Choco Smiley Logo"
               width={120}
               height={40}
-              className="h-10 w-auto object-contain"
+              draggable={false}
+              className="h-12 md:h-14 lg:h-16 w-auto object-contain"
             />
           </Link>
-          <div className="hidden sm:block">
+          <div>
             <Image
               src="/Online Chocolate Store.png"
               alt="Online Chocolate Store"
               width={150}
               height={30}
-              className="h-8 w-auto object-contain"
+              draggable={false}
+              className="h-10 md:h-12 lg:h-14 w-auto object-contain"
             />
           </div>
         </div>
 
         {/* Center: Links (Desktop) */}
-        <div className="hidden md:flex items-center gap-8 text-white font-medium">
+        <div className="hidden md:flex items-center gap-8 text-white font-poppins font-[300]">
           <Link href="/about" className="hover:text-gold transition-colors">
             About
           </Link>
@@ -61,74 +64,108 @@ export function Navbar() {
         </div>
 
         {/* Right Side: Button and Icons (Desktop) */}
-        <div className="hidden md:flex items-center gap-6">
-          <CustomButton className="w-32 rounded-full h-10 text-xs">
+        <div className="hidden md:flex items-center gap-3">
+          <CustomButton className="w-28 lg:w-32 rounded-full h-8 lg:h-10 text-xs lg:text-sm">
             Enquire Now
           </CustomButton>
-          <div className="flex items-center gap-4 text-white">
+          <div className="h-6 lg:h-8 w-[0.5px] bg-white"></div>
+          <div className="flex items-center gap-2 text-white">
             <a href="#" className="hover:text-gold transition-colors">
-              <FaInstagram size={20} />
+              <FaInstagram className="h-6 w-6 lg:h-7 lg:w-7"/>
             </a>
             <a href="#" className="hover:text-gold transition-colors">
-              <FaFacebookF size={18} />
+              <FiFacebook className="h-6 w-6 lg:h-7 lg:w-7"/>
             </a>
-            <Link href="/profile" className="ml-2">
-              <Image
-                src="/profile_icon.png"
-                alt="Profile"
-                width={32}
-                height={32}
-                className="rounded-full border-2 border-transparent hover:border-gold transition-all"
-              />
-            </Link>
+            <Image
+              src="/profile_icon.png"
+              alt="Profile"
+              width={40}
+              height={40}
+              draggable={false}
+              className="h-9 w-9 lg:h-10 lg:w-10 rounded-full border-2 border-transparent hover:border-gold transition-all"
+            />
           </div>
         </div>
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden flex items-center gap-4">
-           <Link href="/profile">
-              <Image
-                src="/profile_icon.png"
-                alt="Profile"
-                width={28}
-                height={28}
-                className="rounded-full"
-              />
-            </Link>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-white focus:outline-none"
           >
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Mobile Menu (Drawer) */}
       <div
         className={cn(
-          "fixed inset-0 bg-purple/95 z-40 transition-transform duration-300 md:hidden flex flex-col items-center justify-center gap-8 text-2xl font-bold",
-          mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          "fixed top-0 right-0 bottom-0 bg-purple z-50 transition-transform duration-300 md:hidden flex flex-col items-start p-8 w-[70%] font-poppins",
+           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
         <button
           onClick={() => setMobileMenuOpen(false)}
           className="absolute top-6 right-6 text-white"
         >
-          <X size={32} />
+          <X size={24} />
         </button>
-        <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="hover:text-gold text-white">
-          About
-        </Link>
-        <Link href="/faqs" onClick={() => setMobileMenuOpen(false)} className="hover:text-gold text-white">
-          FAQs
-        </Link>
-        <CustomButton className="w-48 rounded-full py-4 mt-4">
-          Enquire Now
-        </CustomButton>
-        <div className="flex gap-8 text-white mt-4">
-          <FaInstagram size={32} />
-          <FaFacebookF size={28} />
+
+        {/* 1. User Avatar & 2. Username */}
+        <div className="flex flex-col items-center w-full mt-10 mb-6">
+          <div className="relative w-20 h-20 rounded-full border-2 border-gold overflow-hidden mb-2">
+            <Image
+              src="/profile_icon.png"
+              alt="Profile"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <span className="text-white font-semibold text-lg">Username</span>
+        </div>
+
+        {/* 3. Divider */}
+        <div className="w-full h-[1px] bg-white/20 mb-8" />
+
+        {/* 4. Links with icons */}
+        <div className="flex flex-col gap-6 w-full text-white">
+          <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 hover:text-gold transition-colors text-sm">
+            <User size={18} /> About Us
+          </Link>
+          <Link href="/faqs" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 hover:text-gold transition-colors text-sm">
+            <HelpCircle size={18} /> FAQs
+          </Link>
+          <Link href="/privacy" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 hover:text-gold transition-colors text-sm">
+            <ShieldCheck size={18} /> Privacy Policy
+          </Link>
+          <Link href="/terms" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 hover:text-gold transition-colors text-sm">
+            <FileText size={18} /> Terms & Conditions
+          </Link>
+        </div>
+
+        {/* 5. Divider */}
+        <div className="w-full h-[1px] bg-white/20 my-8" />
+
+        {/* 6. Connect text & 7. Social row */}
+        <div className="w-full">
+          <p className="text-white/60 text-xs mb-4 uppercase tracking-widest">Connect with us on</p>
+          <div className="flex gap-6 text-white">
+            <a href="#" className="hover:text-gold transition-colors">
+              <FaInstagram size={24} />
+            </a>
+            <a href="#" className="hover:text-gold transition-colors">
+              <FiFacebook size={22} />
+            </a>
+          </div>
         </div>
       </div>
     </nav>
