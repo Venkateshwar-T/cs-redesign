@@ -13,7 +13,7 @@ export default function Home() {
   const categoryImage = PlaceHolderImages.find(p => p.id === 'category-card-1');
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center pt-20">
+    <main className="flex min-h-dvh flex-col items-center pt-20 md:pt-24">
       <>
       <h1 className="text-gold font-bold my-8">INPUT FIELDS</h1>
       <div className="flex flex-col gap-8">

@@ -20,18 +20,24 @@ export function Footer() {
         {/* Logos and Links */}
         <div className="flex flex-col md:flex-row gap-4 md:gap-0 justify-between mx-0 md:mx-4 lg:mx-6 font-poppins">
           {/* Logos */}
-          <div className="flex flex-col gap-1 md:gap-0">
-            <Image 
-            src={'/Choco Smiley Logo.png'} 
-            alt='Choco Smiley Logo' width={180} height={180} 
-            draggable={false}
-            className="w-36 lg:w-48 h-auto" />
-            <p className="mx-2 mb-2 text-xs lg:text-sm">Driven By</p>
-            <Image 
-            src={'/Choco Smiley Logo.png'} 
-            alt='Choco Smiley Logo' width={180} height={180} 
-            draggable={false}
-            className="w-36 lg:w-48 h-auto" />
+          <div className="flex flex-col items-start -ml-2 gap-1 md:gap-0">
+            <div className="relative h-14 lg:h-16 aspect-[3/1]">
+              <Image 
+              src={'/Choco Smiley Logo.png'} 
+              alt='Choco Smiley Logo'
+              draggable={false}
+              fill
+              className="object-contain" />
+            </div>
+            <p className="mx-4 mb-1 text-white/80 text-xs lg:text-sm">Driven By</p>
+            <div className="relative h-12 lg:h-14 aspect-[3/1]">
+              <Image 
+              src={'/Choco Smiley Logo.png'} 
+              alt='Choco Smiley Logo' 
+              draggable={false}
+              fill
+              className="object-contain" />
+            </div>
           </div>
           {/* Links Section */}
           <div className="flex flex-col gap-1 md:gap-0">

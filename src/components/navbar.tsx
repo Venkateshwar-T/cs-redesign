@@ -24,31 +24,29 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4 md:px-10",
+        "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
         isScrolled ? "bg-purple shadow-md" : "bg-transparent"
       )}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="max-w-7xl h-20 md:h-24 mx-auto flex items-center justify-between px-6 md:px-10">
         {/* Left Side: Logos */}
         <div className="flex items-center gap-2 md:gap-4">
-          <Link href="/">
+          <Link href="/" className="relative h-12 md:h-14 lg:h-16 aspect-[3/1]">
             <Image
               src="/Choco Smiley Logo.png"
               alt="Choco Smiley Logo"
-              width={120}
-              height={40}
+              fill
               draggable={false}
-              className="h-12 md:h-14 lg:h-16 w-auto object-contain"
+              className="object-contain"
             />
           </Link>
-          <div>
+          <div className="relative h-10 md:h-12 lg:h-14 aspect-[2/1]">
             <Image
               src="/Online Chocolate Store.png"
               alt="Online Chocolate Store"
-              width={150}
-              height={30}
+              fill
               draggable={false}
-              className="h-10 md:h-12 lg:h-14 w-auto object-contain"
+              className="object-contain"
             />
           </div>
         </div>
@@ -93,7 +91,7 @@ export function Navbar() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-white focus:outline-none"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={16} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
@@ -109,19 +107,19 @@ export function Navbar() {
       {/* Mobile Menu (Drawer) */}
       <div
         className={cn(
-          "fixed top-0 right-0 bottom-0 bg-purple z-50 transition-transform duration-300 md:hidden flex flex-col items-start p-8 w-[70%] font-poppins",
+          "fixed top-0 right-0 bottom-0 bg-purple z-50 transition-transform duration-300 md:hidden flex flex-col items-start p-6 w-[70%] font-poppins",
            mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
         <button
           onClick={() => setMobileMenuOpen(false)}
-          className="absolute top-6 right-6 text-white"
+          className="absolute top-4 right-4 text-white"
         >
-          <X size={24} />
+          <X size={16} />
         </button>
 
         {/* 1. User Avatar & 2. Username */}
-        <div className="flex flex-col items-center w-full mt-10 mb-6">
+        <div className="flex flex-col items-center w-full mt-8 mb-6">
           <div className="relative w-20 h-20 rounded-full border-2 border-gold overflow-hidden mb-2">
             <Image
               src="/profile_icon.png"
@@ -158,7 +156,7 @@ export function Navbar() {
         {/* 6. Connect text & 7. Social row */}
         <div className="w-full">
           <p className="text-white/60 text-xs mb-4 uppercase tracking-widest">Connect with us on</p>
-          <div className="flex gap-6 text-white">
+          <div className="flex gap-3 text-white">
             <a href="#" className="hover:text-gold transition-colors">
               <FaInstagram size={24} />
             </a>

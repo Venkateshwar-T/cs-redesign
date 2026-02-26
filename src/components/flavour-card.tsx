@@ -31,7 +31,7 @@ export default function FlavourCard({
         width={size}
         height={size}
         draggable={false}
-        className="w-full h-full rounded-full object-cover"
+        className="w-full h-full rounded-full object-cover transition-all duration-300 lg:group-hover:rotate-180"
       />
       <h1 className="uppercase text-center text-xs font-bold transiton-all duration-300 group-hover:text-gold">{title}</h1>
     </div>
