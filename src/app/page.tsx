@@ -8,110 +8,34 @@ import FlavourCard from "@/components/flavour-card";
 import { CustomSectionDivider } from "@/components/custom-section-divider";
 import CategoryCard from "@/components/category-card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { ReviewContainer } from "@/components/review-container";
 
 export default function Home() {
-  const categoryImage = PlaceHolderImages.find(p => p.id === 'category-card-1');
+  //const categoryImage = PlaceHolderImages.find(p => p.id === 'category-card-1');
 
   return (
-    <main className="flex min-h-dvh flex-col items-center pt-20 md:pt-24">
-      <>
-      <h1 className="text-gold font-bold my-8">INPUT FIELDS</h1>
-      <div className="flex flex-col gap-8">
-        <CustomInput className="w-60 h-12" placeholder="EMAIL OR PHONE"/>
-        <CustomInput className="w-60 h-12" type="password" showPasswordToggle placeholder="PASSWORD"/>
-        <CustomInput className="w-60 h-12" type="password" showPasswordToggle placeholder="CONFIRM PASSWORD"/>
-      </div>
-
-      <h1 className="text-gold font-bold my-8">BUTTONS</h1>
-
-      <div className="flex flex-col items-center gap-4">
-        <CustomButton className="w-36 rounded-full scale-[0.9] md:scale-[1]">Enquire Now</CustomButton>
-        <CustomButton className="w-60 scale-[0.9] md:scale-[1]" showArrow>Sign in</CustomButton>
-        <CustomButton className="w-60 scale-[0.9] md:scale-[1]" showArrow>Create Account</CustomButton>
-        <CustomButton className="w-60 scale-[0.9] md:scale-[1]" showArrow>Send Reset Link</CustomButton>
-        <CustomButton className="w-60 justify-start rounded-full pl-6 scale-[0.9] md:scale-[1]" animateArrow length={24} showArrow>Join the Community</CustomButton>
-        <CustomButton className="w-60 bg-white hover:bg-white/90 scale-[0.9] md:scale-[1]"leadingIcon={<Image src="/google.png" alt="Google" width={16} height={16} draggable={false}/>}>Continue with Google</CustomButton>
-      </div>
+    <main className="flex flex-col items-center gap-8">
+      {/* Search Bar */}
+      <SearchBar className="w-[80%] md:w-[70%] lg:w-[36rem]" placeholder="What are you looking for?" />
       
-      <h1 className="text-gold font-bold my-8">SEARCH BAR</h1>
-
-        <SearchBar className="w-[80%] md:w-[70%] lg:w-[36rem]" placeholder="What are you looking for?" />
-
-      <h1 className="text-gold font-bold my-8">REVIEW CARDS</h1>
-
-      <div className="flex row flex-wrap gap-6">
-        <ReviewCard className=""
-        stars={5} 
-        reviewText="“The chocolates are very sweet,soft and have that hint of dark chocolate...they are absolutely amazing...its a must try!!”"
-        reviewerName="Amrutha"
-        />
-        <ReviewCard className=""
-        stars={5} 
-        reviewText="“Melts in mouth !!!! Just tried the chocolate with nuts - lovedddddd it. Gotta try the plain chocolate!”"
-        reviewerName="SUDHASMITA SAHOO"
-        />
+      {/* Image Slideshow */}
+      <CustomSectionDivider className="-my-12 md:-my-8" topTitle="CAPTURED" bottomTitle="MOMENTS."/>
+      <div className="flex flex-row items-center justify-between gap-40">
+        <div className="flex flex-col gap-6 w-[460px] font-lora text-[1.3rem] font-[500]">
+          A curated glimpse into our handcrafted collections and real-world celebrations. 
+          <br></br>Every box tells a story of elegance and artisanal passion. 
+          From intimate milestones to grand declarations, our bespoke 
+          chocolates are designed to transform fleeting 
+          moments into enduring memories.
+          <div className="text-[1.1rem] text-end font-lora font-thin mr-6">- Team ChocoSmiley</div>
+        </div>
+        <ImageSlideshow images={["/choco1.png", "/choco2.png", "/choco3.png","/choco4.png"]}></ImageSlideshow>
       </div>
+      {/* Reviews */}
+      <CustomSectionDivider className="-my-12 md:-my-8" topTitle="SWEET" bottomTitle="COMMENDATIONS."/>
+      <ReviewContainer />
+      <p className="text-gold font-fredoka font-semibold">“Handcrafted with love, just for you”</p>
 
-      <h1 className="text-gold font-bold my-8">IMAGE SLDESHOW</h1>
-      <ImageSlideshow images={["/choco1.png", "/choco2.png", "/choco3.png", "/choco4.png"]}></ImageSlideshow>
-      
-      <h1 className="text-gold font-bold my-8">FLAVOUR CARDS</h1>
-      <FlavourCard src="/almonds.png"
-        alt="Roasted Almond" 
-        size={142}
-        title={<>Roasted<br/>Almond</>}
-        className="mb-8"
-        >
-      </FlavourCard>
-
-      <h1 className="text-gold font-bold mt-16">SECTION DIVIDERS</h1>
-      <div className="w-full">
-        <CustomSectionDivider topTitle="CAPTURED" bottomTitle="MOMENTS."/>
-        <CustomSectionDivider topTitle="SWEET" bottomTitle="COMMENDATIONS."/>
-      </div>
-      
-      <h1 className="text-gold font-bold my-8">CATEGORY CARDS</h1>
-      {/* <div className="flex flex-row flex-wrap gap-4 mb-8">
-        {categoryImage && (
-          <>
-          <CategoryCard
-            title="Hampers"
-            subtitle="Gourmet"
-            imageSrc={categoryImage.imageUrl}
-            className="w-60 h-90" />
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-row gap-4">
-              <CategoryCard
-                title="Hampers"
-                subtitle="Gourmet"
-                imageSrc={categoryImage.imageUrl}
-                className="w-80 h-40" />
-              <CategoryCard
-                title="Hampers"
-                subtitle="Gourmet"
-                imageSrc={categoryImage.imageUrl}
-                className="w-40 h-40" />
-            </div>
-            <CategoryCard
-                title="Hampers"
-                subtitle="Gourmet"
-                imageSrc={categoryImage.imageUrl}
-                className="w-90 h-40" />
-          </div>
-          <CategoryCard
-            title="Hampers"
-            subtitle="Gourmet"
-            imageSrc={categoryImage.imageUrl}
-            className="w-40 h-90" />
-          <CategoryCard
-            title="Hampers"
-            subtitle="Gourmet"
-            imageSrc={categoryImage.imageUrl}
-            className="w-40 h-90" />
-          </>
-        )}
-      </div> */}
-      </>
     </main>
   );
 }

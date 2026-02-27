@@ -22,7 +22,7 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
   if (!images || images.length === 0) return null;
 
   return (
-    <div className={`relative h-[400px] w-[600px] scale-[0.6] md:scale-[0.85] lg:scale-[1] rounded-[2rem] overflow-hidden bg-gray-900 ${className}`}>
+    <div className={`relative h-[450px] w-[700px] rounded-[2rem] overflow-hidden bg-gray-900 ${className}`}>
       
       {/* Images */}
       {images.map((src, index) => (
@@ -32,6 +32,9 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
           alt={`Slide ${index + 1}`}
           draggable={false}
           fill
+          sizes="(max-width: 768px) 120px,
+                      (max-width: 1024px) 170px,
+                      340px"
           className={`object-cover transition-opacity duration-1000 ease-in-out ${
             index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
           }`}

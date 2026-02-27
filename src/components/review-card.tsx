@@ -29,13 +29,13 @@ const ReviewCard = React.forwardRef<HTMLDivElement, ReviewCardProps>(
       <div
         ref={ref}
         className={cn(
-          "group relative bg-white w-[24rem] scale-[0.80] md:scale-[0.90] lg:scale-[1] origin-top rounded-[1rem] md:rounded-[2rem] shadow-[4px_4px_0_theme(colors.gold)] p-6 text-black flex flex-col gap-4 transition-transform duration-300",
+          "group relative bg-white w-[300px] md:w-[380px] flex-shrink-0 justify-between origin-top rounded-[1rem] md:rounded-[2rem] shadow-[4px_4px_0_theme(colors.gold)] p-6 text-black flex flex-col gap-4 transition-transform duration-300 hover:scale-105 hover:-translate-y-1",
           className
         )}
         {...props}
       >
         <span 
-          className="font-fredoka absolute -top-11 right-1 text-[10rem] text-gold group-hover:animate-wiggle leading-none select-none pointer-events-none"
+          className="font-fredoka absolute -top-9 right-0 md:-top-11 md:right-1 text-[8rem] md:text-[10rem] text-gold group-hover:animate-wiggle leading-none select-none pointer-events-none"
         >
           ”
         </span>
@@ -47,16 +47,16 @@ const ReviewCard = React.forwardRef<HTMLDivElement, ReviewCardProps>(
         </div>
 
         <p 
-          className="font-lora text-purple font-semibold italic text-lg"
+          className="font-lora text-purple font-semibold italic text-sm md:text-lg"
         >
           {reviewText}
         </p>
 
         <hr className="border-t border-black w-full" />
 
-        <div className="flex justify-between items-center text-sm w-full">
-          <span className="uppercase font-fredoka text-[1rem] text-purple font-semibold tracking-wider">{reviewerName}</span>
-          <span className="text-[#A3A3A3] text-sm font-medium">Reviewed on Google</span>
+        <div className="flex justify-between items-center w-full">
+          <span className="uppercase font-fredoka text-[0.9rem] md:text-[1rem] text-purple font-semibold tracking-wider">{reviewerName}</span>
+          <span className="text-[#A3A3A3] text-xs md:text-sm font-medium">Reviewed on Google</span>
         </div>
       </div>
     );

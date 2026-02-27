@@ -81,4 +81,11 @@
   body {
     @apply bg-background text-foreground;
   }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  html {
+    scrollbar-width: none;
+    /*overflow-y: scroll;*/
+  }
 }

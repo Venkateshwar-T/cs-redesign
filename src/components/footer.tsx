@@ -27,6 +27,9 @@ export function Footer() {
               alt='Choco Smiley Logo'
               draggable={false}
               fill
+              sizes="(max-width: 768px) 120px,
+                      (max-width: 1024px) 170px,
+                      200px"
               className="object-contain" />
             </div>
             <p className="mx-4 mb-1 text-white/80 text-xs lg:text-sm">Driven By</p>
@@ -36,6 +39,9 @@ export function Footer() {
               alt='Choco Smiley Logo' 
               draggable={false}
               fill
+              sizes="(max-width: 768px) 120px,
+                      (max-width: 1024px) 170px,
+                      200px"
               className="object-contain" />
             </div>
           </div>

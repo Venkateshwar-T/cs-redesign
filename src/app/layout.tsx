@@ -2,7 +2,7 @@ import type {Metadata} from 'next';
 import './globals.css';
 import { Poppins, Fredoka, Lora } from "next/font/google";
 import { Footer } from '@/components/footer';
-import { Navbar } from '@/components/navbar';
+import Header from '@/components/header';
 
 export const metadata: Metadata = {
   title: 'CS Redesign',
@@ -16,6 +16,7 @@ const poppins = Poppins({
 });
 const lora = Lora({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-lora",
 });
 const fredoka = Fredoka({
@@ -27,20 +28,19 @@ const fredoka = Fredoka({
 export default function RootLayout({
   children,
 }: Readonly<{
+  
   children: React.ReactNode;
 }>) {
+  // const [isSearchOpen, setIsSearchOpen] = useState(false);
   return (
     <html lang="en" className={`${poppins.variable} ${lora.variable} ${fredoka.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Inter&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased bg-background text-foreground flex flex-col min-h-screen">
-        <Navbar />
-        <div className='flex-grow pt-0'>
+        <Header/>
+        <main className='flex-1 pb-16 pt-24 md:pt-28'>
           {children}
-        </div>
+        </main>
         <Footer />
       </body>
     </html>

@@ -9,10 +9,11 @@ import { FiFacebook } from 'react-icons/fi';
 import { cn } from '@/lib/utils';
 import { Menu, X, User, HelpCircle, ShieldCheck, FileText } from 'lucide-react';
 
-export function Navbar() {
+export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  //handling on scroll nav bar bg solid
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -21,6 +22,8 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  //disabling scroll when search bar in focus
+
   return (
     <nav
       className={cn(
@@ -28,15 +31,19 @@ export function Navbar() {
         isScrolled ? "bg-purple shadow-md" : "bg-transparent"
       )}
     >
-      <div className="max-w-7xl h-20 md:h-24 mx-auto flex items-center justify-between px-6 md:px-10">
+      <div className="h-20 md:h-24 flex items-center justify-between px-6 md:px-8 lg:px-20">
         {/* Left Side: Logos */}
-        <div className="flex items-center gap-2 md:gap-4">
+        <div className="flex items-center gap-1">
           <Link href="/" className="relative h-12 md:h-14 lg:h-16 aspect-[3/1]">
             <Image
               src="/Choco Smiley Logo.png"
               alt="Choco Smiley Logo"
               fill
               draggable={false}
+              priority
+              sizes="(max-width: 768px) 120px,
+                      (max-width: 1024px) 170px,
+                      200px"
               className="object-contain"
             />
           </Link>
@@ -46,13 +53,17 @@ export function Navbar() {
               alt="Online Chocolate Store"
               fill
               draggable={false}
+              priority
+              sizes="(max-width: 768px) 120px,
+                      (max-width: 1024px) 170px,
+                      200px"
               className="object-contain"
             />
           </div>
         </div>
 
         {/* Center: Links (Desktop) */}
-        <div className="hidden md:flex items-center gap-8 text-white font-poppins font-[300]">
+        <div className="hidden md:flex items-center gap-4 lg:gap-8 text-sm lg:text-lg text-white font-poppins font-[300]">
           <Link href="/about" className="hover:text-gold transition-colors">
             About
           </Link>
@@ -62,7 +73,18 @@ export function Navbar() {
         </div>
 
         {/* Right Side: Button and Icons (Desktop) */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-2 lg:gap-3">
+          <CustomButton
+          onClick={onOpenSearch}
+            className={`bg-white rounded-full md:h-8 md:w-8 lg:h-10 lg:w-10 hover:bg-white/90 transition-all duration-300 ${
+              isScrolled
+                ? "opacity-100 scale-100"
+                : "opacity-0 scale-0 pointer-events-none"
+            }`}
+          >
+            <Image src="/search_icon.png" alt="Search icon" width={28} height={28} className="h-5 w-5 lg:h-6 lg:w-6" draggable={false} />
+          </CustomButton>
+          
           <CustomButton className="w-28 lg:w-32 rounded-full h-8 lg:h-10 text-xs lg:text-sm">
             Enquire Now
           </CustomButton>
@@ -79,6 +101,7 @@ export function Navbar() {
               alt="Profile"
               width={40}
               height={40}
+              sizes="40px"
               draggable={false}
               className="h-9 w-9 lg:h-10 lg:w-10 rounded-full border-2 border-transparent hover:border-gold transition-all"
             />
@@ -86,7 +109,17 @@ export function Navbar() {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="md:hidden flex flex-row items-center gap-4">
+          <CustomButton
+            onClick={onOpenSearch}
+            className={`bg-white rounded-full h-7 w-7 md:h-8 md:w-8 lg:h-10 lg:w-10  hover:bg-white/90 transition-all duration-300 ${
+              isScrolled
+                ? "opacity-100 scale-100"
+                : "opacity-0 scale-0 pointer-events-none"
+            }`}
+          >
+            <Image src="/search_icon.png" alt="Search icon" width={28} height={28} className="h-5 w-5 lg:h-6 lg:w-6" draggable={false} />
+          </CustomButton>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-white focus:outline-none"
@@ -125,10 +158,11 @@ export function Navbar() {
               src="/profile_icon.png"
               alt="Profile"
               fill
+              sizes="120px"
               className="object-cover"
             />
           </div>
-          <span className="text-white font-semibold text-lg">Username</span>
+          <span className="text-gold font-semibold text-lg">Username</span>
         </div>
 
         {/* 3. Divider */}
@@ -167,5 +201,6 @@ export function Navbar() {
         </div>
       </div>
     </nav>
+    
   );
 }
