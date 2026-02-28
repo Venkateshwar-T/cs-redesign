@@ -13,7 +13,7 @@ export function ExploreCategories() {
             transition={{ duration: 0.8 }}
             className="w-full p-6 md:p-10 md:pb-0 lg:pb-10"
         >
-            <fieldset className="relative bg-white/20 border-[0.1rem] md:border-[0.15rem] border-purple rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] lg:hover:border-gold">
+            <fieldset className="relative bg-white/20 border-[0.1rem] md:border-[0.15rem] border-purple rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] transition-all duration-300 lg:hover:border-gold">
                 {/* Legend natively breaks the border */}
                 <legend className="ml-10 md:ml-16 lg:ml-24 px-0 relative pointer-events-none">
                     <div className="-translate-y-[0.05rem] md:-translate-y-[0.09rem] lg:-translate-y-[0.05rem] -ml-[3px] -mr-[2px]">

@@ -17,7 +17,8 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
   // handling on scroll nav bar bg solid
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 60);
+      const threshold = window.innerWidth < 768 ? 20 : 60;
+      setIsScrolled(window.scrollY > threshold);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -27,7 +28,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
         isScrolled ? "bg-purple shadow-md" : "bg-transparent"

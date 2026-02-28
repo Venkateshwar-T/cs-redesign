@@ -37,7 +37,7 @@ const NavSearchBar = React.forwardRef<HTMLInputElement, NavSearchBarProps>(
           }`}
         >
           {/* Search Bar */}
-          <div className={`flex h-9 md:h-12 items-center rounded-full bg-white shadow-2xl ring-4 ring-purple px-2 md:px-4 ${className}`}>
+          <div className={`flex h-9 md:h-10 lg:h-12 items-center rounded-full bg-white shadow-2xl ring-4 ring-purple px-2 md:px-4 ${className}`}>
             <Image src="/search_icon.png" alt="Search icon" width={28} height={28} draggable={false} />
             <input
               ref={inputRef}

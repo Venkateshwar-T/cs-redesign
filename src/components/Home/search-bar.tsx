@@ -38,7 +38,7 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
             ${isFocused ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
           onClick={() => setIsFocused(false)} />
         <div
-          className={`flex h-9 md:h-12 w-[100%] items-center rounded-full transition-all duration-300 bg-white px-2 md:px-4 
+          className={`flex h-9 md:h-10 lg:h-12 w-[100%] items-center rounded-full transition-all duration-300 bg-white px-2 md:px-4 
           ${ isFocused
             ? "z-50 scale-110 shadow-2xl ring-4 ring-purple" 
             : "shadow-sm border border-gray-200"} 

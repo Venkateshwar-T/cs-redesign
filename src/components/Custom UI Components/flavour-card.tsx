@@ -23,13 +23,13 @@ export default function FlavourCard({
     className
   )}
 >
-  <div className="relative w-full max-w-[120px] md:max-w-[180px] aspect-square rounded-full overflow-hidden bg-purple transition-all duration-300 group-hover:ring-4 group-hover:ring-gold">
+  <div className="relative w-full mx-auto max-w-[120px] md:max-w-[180px] aspect-square rounded-full overflow-hidden bg-purple transition-all duration-300 group-hover:ring-4 group-hover:ring-gold">
     <Image
       src={src}
       alt={alt}
       fill
       draggable={false}
-      className="object-cover transition-all duration-300 lg:group-hover:rotate-180"
+      className="object-cover object-center transition-all duration-300 lg:group-hover:rotate-180"
     />
   </div>
 

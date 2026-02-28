@@ -76,8 +76,8 @@ export function ReviewSection() {
             </div>
 
             {/* Gradient fades for the edges */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background/40 md:from-background/80 to-transparent"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background/40 md:from-background/80 to-transparent"></div>
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-24 lg:w-32 bg-gradient-to-r from-background/40 md:from-background/80 to-transparent"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-24 lg:w-32 bg-gradient-to-l from-background/40 md:from-background/80 to-transparent"></div>
           </motion.div>
 
         <motion.p 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 export interface CustomSectionDividerProps {
   topTitle?: string;
@@ -16,7 +17,13 @@ const CustomSectionDivider = React.forwardRef<HTMLDivElement, CustomSectionDivid
     return (
       <div ref={ref} className="relative flex items-center w-full py-8 -my-12 md:-my-8" {...props}>
         {/* Left Line */}
-        <div className="h-[2px] lg:h-[3px] bg-gold w-12 md:w-[70px] lg:w-[136px] flex-shrink-0" />
+        <motion.div 
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="h-[2px] lg:h-[3px] bg-gold w-12 md:w-[70px] lg:w-[136px] flex-shrink-0 origin-right" 
+        />
         
         {/* Text Area */}
         <div className={cn("relative z-20 pointer-events-none", className)}>
@@ -29,7 +36,13 @@ const CustomSectionDivider = React.forwardRef<HTMLDivElement, CustomSectionDivid
         </div>
 
         {/* Right Line */}
-        <div className="h-[2px] lg:h-[3px] bg-gold flex-grow" />
+        <motion.div 
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="h-[2px] lg:h-[3px] bg-gold flex-grow origin-left" 
+        />
       </div>
     );
   }

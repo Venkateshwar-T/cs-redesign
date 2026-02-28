@@ -9,10 +9,10 @@ export function ExploreFlavours() {
     const flavours = [
         { src: "/almonds.png", alt: "Roasted Almond", title: <>Roasted<br/>Almond</> },
         { src: "/hazelnut.png", alt: "Hazelnut Crunch", title: <>Hazelnut<br/>Crunch</> },
-        { src: "/caramel.png", alt: "Salted Caramel", title: <>Salted<br/>Caramel</> },
-        { src: "/coffee.png", alt: "Mocha Bliss", title: <>Mocha<br/>Bliss</> },
-        { src: "/berry.png", alt: "Berry Burst", title: <>Berry<br/>Burst</> },
-        { src: "/dark.png", alt: "Dark Cocoa", title: <>Dark<br/>Cocoa</> },
+        { src: "/darkchoco.png", alt: "Dark Chocolate", title: <>Dark<br/>Chocolate</> },
+        { src: "/nuts.png", alt: "Fruits & Nuts", title: <>Fruits &<br/>Nuts</> },
+        { src: "/butterscotch.png", alt: "Butterscotch Chocolate", title: <>Butterscotch<br/>Chocolate</> },
+        { src: "/sugarfree.png", alt: "Sugar Free", title: <>Sugar<br/>Free</> },
       ];
 
     const containerVariants = {
@@ -35,7 +35,7 @@ export function ExploreFlavours() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={containerVariants}
-                className="relative bg-white/20 border-[0.1rem] md:border-[0.15rem] border-purple rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] lg:hover:border-gold mb-8"
+                className="relative bg-white/20 border-[0.1rem] md:border-[0.15rem] border-purple rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] transition-all duration-300 lg:hover:border-gold mb-8"
             >
                 {/* Legend natively breaks the border */}
                 <legend className="ml-10 md:ml-16 lg:ml-24 px-0 relative pointer-events-none">
@@ -52,7 +52,7 @@ export function ExploreFlavours() {
                 </legend>
 
                 {/* Flavour cards */}
-                <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-6 lg:gap-10 p-4 md:p-8 pt-6 md:pt-10">
+                <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-6 lg:gap-10 p-5 md:p-8 pt-7 md:pt-10">
                     {flavours.map((flavour, index) => {
                         const isDimmed = hoveredIndex !== null && hoveredIndex !== index;
                         return (
@@ -62,7 +62,7 @@ export function ExploreFlavours() {
                                 onMouseEnter={() => setHoveredIndex(index)}
                                 onMouseLeave={() => setHoveredIndex(null)}
                                 className={`transition-all duration-300 ${
-                                    isDimmed ? "opacity-70" : ""
+                                    isDimmed ? "!opacity-60" : ""
                                 }`}
                             >
                                 <FlavourCard
