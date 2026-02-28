@@ -41,7 +41,7 @@ const NavSearchBar = React.forwardRef<HTMLInputElement, NavSearchBarProps>(
             <Image src="/search_icon.png" alt="Search icon" width={28} height={28} draggable={false} />
             <input
               ref={inputRef}
-              className="ml-2 md:ml-3 w-full bg-transparent text-sm md:text-lg text-gray-800 placeholder:text-[#818181] font-semibold focus:outline-none"
+              className="ml-2 md:ml-3 w-full bg-transparent text-sm md:text-lg text-gray-800 placeholder:text-[#818181] font-[500] focus:outline-none"
               onKeyDown={(e) => e.key === 'Escape' && onClose?.()}
               {...props} 
             />

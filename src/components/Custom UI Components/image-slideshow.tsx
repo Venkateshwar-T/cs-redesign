@@ -22,7 +22,7 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
   if (!images || images.length === 0) return null;
 
   return (
-    <div className={`relative h-[450px] w-[700px] rounded-[2rem] overflow-hidden bg-gray-900 ${className}`}>
+    <div className={`relative rounded-[1rem] md:rounded-[2rem] w-full h-full overflow-hidden bg-gray-900 ${className}`}>
       
       {/* Images */}
       {images.map((src, index) => (

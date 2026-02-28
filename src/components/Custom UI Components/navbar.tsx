@@ -31,7 +31,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
         isScrolled ? "bg-purple shadow-md" : "bg-transparent"
       )}
     >
-      <div className="h-20 md:h-24 flex items-center justify-between px-6 md:px-8 lg:px-20">
+      <div className="h-20 md:h-24 flex items-center justify-between px-3 md:px-8 lg:px-20">
         {/* Left Side: Logos */}
         <div className="flex items-center gap-1">
           <Link href="/" className="relative h-12 md:h-14 lg:h-16 aspect-[3/1]">

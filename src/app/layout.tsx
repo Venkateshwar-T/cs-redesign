@@ -1,8 +1,8 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Poppins, Fredoka, Lora } from "next/font/google";
-import { Footer } from '@/components/footer';
-import Header from '@/components/header';
+import { Footer } from '@/components/Custom UI Components/footer';
+import Header from '@/components/Custom UI Components/header';
 
 export const metadata: Metadata = {
   title: 'CS Redesign',
@@ -21,7 +21,7 @@ const lora = Lora({
 });
 const fredoka = Fredoka({
   subsets: ["latin"],
-  weight: ["400", "600"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-fredoka",
 });
 
