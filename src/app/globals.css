@@ -79,13 +79,13 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
   }
   ::-webkit-scrollbar {
     display: none;
   }
   html {
     scrollbar-width: none;
-    /*overflow-y: scroll;*/
+    @apply overflow-x-hidden;
   }
 }

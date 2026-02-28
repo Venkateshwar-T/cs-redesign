@@ -1,4 +1,3 @@
-
 "use client";
 
 import { CustomSectionDivider } from "../Custom UI Components/custom-section-divider";
@@ -12,8 +11,9 @@ type CapturedSectionProps = {
 export default function CapturedSection({ images }: CapturedSectionProps) {
   return (
     
-      <>
-        <CustomSectionDivider className="-my-12 md:-my-8" topTitle="CAPTURED" bottomTitle="MOMENTS." /><div className="flex flex-col md:flex-row items-center md:h-[20rem] lg:h-[26rem] w-full justify-between px-6 md:px-10 lg:px-12 gap-6 lg:gap-8 my-12">
+      <div className="w-full overflow-hidden">
+        <CustomSectionDivider className="-my-12 md:-my-8" topTitle="CAPTURED" bottomTitle="MOMENTS." />
+        <div className="flex flex-col md:flex-row items-center md:h-[20rem] lg:h-[26rem] w-full justify-between px-6 md:px-10 lg:px-12 gap-6 lg:gap-8 my-12">
 
         {/* Text - Sliding from Left */}
         <motion.div
@@ -49,7 +49,7 @@ export default function CapturedSection({ images }: CapturedSectionProps) {
         </motion.div>
 
       </div>
-    </>
+    </div>
     
   );
 }
