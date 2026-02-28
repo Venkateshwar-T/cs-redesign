@@ -1,7 +1,9 @@
+
 'use client'
 
 import React, { useState } from 'react';
 import FlavourCard from '../Custom UI Components/flavour-card';
+import { motion } from 'framer-motion';
 
 export function ExploreFlavours() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -13,9 +15,31 @@ export function ExploreFlavours() {
         { src: "/berry.png", alt: "Berry Burst", title: <>Berry<br/>Burst</> },
         { src: "/dark.png", alt: "Dark Cocoa", title: <>Dark<br/>Cocoa</> },
       ];
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, scale: 0.8 },
+        visible: { opacity: 1, scale: 1 }
+    };
+
     return (
         <div className="w-full p-6 md:p-10">
-            <div className="relative bg-white/20 border-2 border-purple rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] lg:hover:border-gold mb-8">
+            <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={containerVariants}
+                className="relative bg-white/20 border-2 border-purple rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] lg:hover:border-gold mb-8"
+            >
                 {/* Text on Border */}
                 <div className="absolute -top-[0.7rem] md:-top-[1.1rem] lg:-top-[1.2rem] left-10 md:left-20 lg:left-24 z-20 flex flex-col items-start pointer-events-none">
                     <h1
@@ -31,8 +55,9 @@ export function ExploreFlavours() {
                     {flavours.map((flavour, index) => {
                         const isDimmed = hoveredIndex !== null && hoveredIndex !== index;
                         return (
-                            <div
+                            <motion.div
                                 key={index}
+                                variants={itemVariants}
                                 onMouseEnter={() => setHoveredIndex(index)}
                                 onMouseLeave={() => setHoveredIndex(null)}
                                 className={`transition-all duration-300 ${
@@ -44,11 +69,11 @@ export function ExploreFlavours() {
                                     alt={flavour.alt}
                                     title={flavour.title}
                                 />
-                            </div>
+                            </motion.div>
                         );
                     })}
                 </div>
-            </div>
+            </motion.div>
       </div>
     );
 }

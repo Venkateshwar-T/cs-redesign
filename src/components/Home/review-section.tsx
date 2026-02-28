@@ -1,6 +1,10 @@
+
+"use client";
+
 import React from 'react';
 import ReviewCard from '../Custom UI Components/review-card';
 import { CustomSectionDivider } from '../Custom UI Components/custom-section-divider';
+import { motion } from 'framer-motion';
 
 // Added a style block for the infinite scroll animation
 const MarqueeStyles = () => (
@@ -29,11 +33,35 @@ export function ReviewSection() {
     // Duplicating the array creates the seamless infinite loop
     const infiniteReviews = [...reviews, ...reviews];
 
+    const tagline = "“Handcrafted with love, just for you”";
+    
+    // Typing animation logic
+    const sentenceVariants = {
+      hidden: { opacity: 1 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.05,
+        },
+      },
+    };
+
+    const letterVariants = {
+      hidden: { opacity: 0 },
+      visible: { opacity: 1 },
+    };
+
     return (
         <>
           <CustomSectionDivider className="-my-12 md:-my-8" topTitle="SWEET" bottomTitle="COMMENDATIONS." />
           
-          <div className="relative w-full overflow-hidden bg-background pb-5 md:pb-8 mt-6 md:mt-10">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="relative w-full overflow-hidden bg-background pb-5 md:pb-8 mt-6 md:mt-10"
+          >
             <MarqueeStyles />
 
             {/* Container that handles the horizontal scroll and pause on hover */}
@@ -50,8 +78,21 @@ export function ReviewSection() {
             {/* Gradient fades for the edges */}
             <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background/40 md:from-background/80 to-transparent"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background/40 md:from-background/80 to-transparent"></div>
-          </div>
-        <p className="text-sm md:text-lg text-gold font-fredoka font-[500] pt-8">“Handcrafted with love, just for you”</p>
+          </motion.div>
+
+        <motion.p 
+          variants={sentenceVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-sm md:text-lg text-gold font-fredoka font-[500] pt-8"
+        >
+          {tagline.split("").map((char, index) => (
+            <motion.span key={index} variants={letterVariants}>
+              {char}
+            </motion.span>
+          ))}
+        </motion.p>
       </>
     );
 }

@@ -1,9 +1,19 @@
+
+"use client";
+
 import React from 'react';
 import { CategoryCard } from '../Custom UI Components/category-card';
+import { motion } from 'framer-motion';
 
 export function ExploreCategories() {
     return (
-        <div className="w-full p-6 md:p-10">
+        <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-full p-6 md:p-10"
+        >
             <div className="relative bg-white/20 border-2 border-purple rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] lg:hover:border-gold">
                 {/* Text on Border */}
                 <div className="absolute -top-[0.7rem] md:-top-[1.1rem] lg:-top-[1.2rem] left-10 md:left-20 lg:left-24 z-20 flex flex-col items-start pointer-events-none">
@@ -25,6 +35,6 @@ export function ExploreCategories() {
                     <CategoryCard className="row-span-1 col-span-2 md:row-span-1 md:col-span-2 lg:col-span-3"title={'Hampers'} subtitle={'Gourmet'} imageSrc={'/choco1.png'} />
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }

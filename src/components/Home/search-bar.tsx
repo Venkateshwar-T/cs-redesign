@@ -1,9 +1,11 @@
+
 "use client";
 
 import * as React from "react";
 import Image from "next/image";
 import { CustomButton } from "../Custom UI Components/custom-button";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export interface SearchBarProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
@@ -25,7 +27,12 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
     }, [isFocused]);
     
     return (
-      <>
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="w-full flex justify-center"
+      >
         <div
           className={`fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 z-50 
             ${isFocused ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
@@ -46,7 +53,7 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
             {...props} />
           <CustomButton className="bg-transparent py-1 px-2 text-xs md:text-sm hover:bg-transparent hover:text-purple/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple/20">SEARCH</CustomButton>
         </div>
-      </>
+      </motion.div>
     );
   }
 );
