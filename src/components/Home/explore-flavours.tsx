@@ -1,4 +1,3 @@
-
 'use client'
 
 import React, { useState } from 'react';
@@ -20,38 +19,40 @@ export function ExploreFlavours() {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
+            transition: { staggerChildren: 0.1 }
         }
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, scale: 0.8 },
+        hidden: { opacity: 0, scale: 0.5 },
         visible: { opacity: 1, scale: 1 }
     };
 
     return (
         <div className="w-full p-6 md:p-10">
-            <motion.div 
+            <motion.fieldset 
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={containerVariants}
-                className="relative bg-white/20 border-2 border-purple rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] lg:hover:border-gold mb-8"
+                className="relative bg-white/20 border-[0.1rem] md:border-[0.15rem] border-purple rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] lg:hover:border-gold mb-8"
             >
-                {/* Text on Border */}
-                <div className="absolute -top-[0.7rem] md:-top-[1.1rem] lg:-top-[1.2rem] left-10 md:left-20 lg:left-24 z-20 flex flex-col items-start pointer-events-none">
-                    <h1
-                    className="-mb-1 md:-mb-3 text-lg md:text-xl lg:text-2xl font-[600] font-inter italic text-foreground leading-none">
-                        EXPLORE
-                    </h1>
-                    <h1 className="-ml-1 lg:-ml-2 text-xl md:text-2xl lg:text-3xl font-[800] font-inter text-gold leading-none">
-                        FLAVOURS
-                    </h1>
-                </div>
+                {/* Legend natively breaks the border */}
+                <legend className="ml-10 md:ml-16 lg:ml-24 px-0 relative pointer-events-none">
+                    <div className="-translate-y-[0.05rem] md:-translate-y-[0.09rem] lg:-translate-y-[0.05rem] -ml-[3px] -mr-[2px]">
+                        {/* Only this text controls the width of the gap now */}
+                        <h1 className="text-lg md:text-xl lg:text-2xl font-[600] font-inter italic leading-none whitespace-nowrap">
+                            EXPLORE
+                        </h1>
+                        {/* Absolute positioning prevents this from widening the legend */}
+                        <h1 className="absolute top-full left-0 -mt-1 md:-mt-3 -ml-1 lg:-ml-2 text-xl md:text-2xl lg:text-3xl font-[800] font-inter text-gold leading-none whitespace-nowrap">
+                            FLAVOURS
+                        </h1>
+                    </div>
+                </legend>
+
                 {/* Flavour cards */}
-                <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-6 lg:gap-10 p-4 pt-10 md:p-8 md:pt-12 lg:pt-16">
+                <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-6 lg:gap-10 p-4 md:p-8 pt-6 md:pt-10">
                     {flavours.map((flavour, index) => {
                         const isDimmed = hoveredIndex !== null && hoveredIndex !== index;
                         return (
@@ -61,7 +62,7 @@ export function ExploreFlavours() {
                                 onMouseEnter={() => setHoveredIndex(index)}
                                 onMouseLeave={() => setHoveredIndex(null)}
                                 className={`transition-all duration-300 ${
-                                isDimmed ? "opacity-70" : ""
+                                    isDimmed ? "opacity-70" : ""
                                 }`}
                             >
                                 <FlavourCard
@@ -73,7 +74,7 @@ export function ExploreFlavours() {
                         );
                     })}
                 </div>
-            </motion.div>
+            </motion.fieldset>
       </div>
     );
 }

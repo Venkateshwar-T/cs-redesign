@@ -14,23 +14,22 @@ const CustomSectionDivider = React.forwardRef<HTMLDivElement, CustomSectionDivid
     bottomTitle="MOMENTS",
     ...props }, ref) => {
     return (
-      <div ref={ref} className={cn("relative w-full py-8", className)} {...props}>
-        {/* The Line */}
-        <div className="absolute top-1/2 w-full h-[2px] md:h-[3px] bg-gold -translate-y-1/2 z-10 pointer-events-none" />
+      <div ref={ref} className="relative flex items-center w-full py-8 -my-12 md:-my-8" {...props}>
+        {/* Left Line */}
+        <div className="h-[2px] lg:h-[3px] bg-gold w-12 md:w-[70px] lg:w-[136px] flex-shrink-0" />
         
-        {/* CAPTURED (Bisected by the line) */}
-        <div className="absolute top-1/2 -translate-y-1/2 z-20 left-12 md:left-[70px] lg:left-[136px] pointer-events-none bg-background">
-          <h1 className="text-lg md:text-xl lg:text-2xl font-[600] font-inter italic text-foreground leading-none">
-          {topTitle}
+        {/* Text Area */}
+        <div className={cn("relative z-20 pointer-events-none", className)}>
+          <h1 className="text-lg md:text-xl lg:text-2xl font-[600] font-inter italic text-foreground leading-none whitespace-nowrap">
+            {topTitle}
           </h1>
-        </div>
-
-        {/* MOMENTS (Below the line) */}
-        <div className="absolute top-1/2 z-20 pt-[0.3rem] md:pt-1 left-11 md:left-16 lg:left-32 pointer-events-none">
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-[800] font-inter text-gold leading-none">
-          {bottomTitle}
+          <h2 className="absolute top-full left-0 -mt-1 md:-mt-3 -ml-1 lg:-ml-2 text-xl md:text-2xl lg:text-3xl font-[800] font-inter text-gold leading-none whitespace-nowrap">
+            {bottomTitle}
           </h2>
         </div>
+
+        {/* Right Line */}
+        <div className="h-[2px] lg:h-[3px] bg-gold flex-grow" />
       </div>
     );
   }
