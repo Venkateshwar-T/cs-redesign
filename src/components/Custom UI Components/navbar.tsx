@@ -8,12 +8,13 @@ import { FaInstagram } from 'react-icons/fa';
 import { FiFacebook } from 'react-icons/fi';
 import { cn } from '@/lib/utils';
 import { Menu, X, User, HelpCircle, ShieldCheck, FileText } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  //handling on scroll nav bar bg solid
+  // handling on scroll nav bar bg solid
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 60);
@@ -23,7 +24,10 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
   }, []);
 
   return (
-    <nav
+    <motion.nav
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
         isScrolled ? "bg-purple shadow-md" : "bg-transparent"
@@ -73,7 +77,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
         {/* Right Side: Button and Icons (Desktop) */}
         <div className="hidden md:flex items-center gap-2 lg:gap-3">
           <CustomButton
-          onClick={onOpenSearch}
+            onClick={onOpenSearch}
             className={`bg-white rounded-full md:h-8 md:w-8 lg:h-10 lg:w-10 hover:bg-white/90 transition-all duration-300 ${
               isScrolled
                 ? "opacity-100 scale-100"
@@ -198,7 +202,6 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
           </div>
         </div>
       </div>
-    </nav>
-    
+    </motion.nav>
   );
 }
