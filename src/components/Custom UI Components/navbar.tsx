@@ -66,7 +66,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
             About
           </Link>
           <Link href="/faqs" className="hover:text-gold transition-colors">
-            FAQs
+            FAQ
           </Link>
         </div>
 
@@ -172,7 +172,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
             <User size={18} /> About Us
           </Link>
           <Link href="/faqs" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 hover:text-gold transition-colors text-sm">
-            <HelpCircle size={18} /> FAQs
+            <HelpCircle size={18} /> FAQ
           </Link>
           <Link href="/privacy" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 hover:text-gold transition-colors text-sm">
             <ShieldCheck size={18} /> Privacy Policy
