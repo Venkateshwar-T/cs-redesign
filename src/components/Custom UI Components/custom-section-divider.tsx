@@ -14,7 +14,7 @@ const CustomSectionDivider = React.forwardRef<HTMLDivElement, CustomSectionDivid
     bottomTitle="MOMENTS",
     ...props }, ref) => {
     return (
-      <div ref={ref} className={cn("relative w-full h-32", className)} {...props}>
+      <div ref={ref} className={cn("relative w-full py-8", className)} {...props}>
         {/* The Line */}
         <div className="absolute top-1/2 w-full h-[2px] md:h-[3px] bg-gold -translate-y-1/2 z-10 pointer-events-none" />
         

@@ -13,27 +13,29 @@ interface FlavourCardProps {
 export default function FlavourCard({ 
   src = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200&auto=format&fit=crop", 
   alt = "Flavour",
-  size = 128,
   title = "Flavour",
   className,
 }: FlavourCardProps) {
   return (
-    <div 
-      style={{ width: size, height: size }}
-      className={cn(
-        "group flex flex-col items-center gap-2 rounded-full bg-purple transition-all duration-300 hover:ring-4 hover:ring-gold cursor-pointer",
-        className
-      )}
-    >
-      <Image
-        src={src}
-        alt={alt}
-        width={size}
-        height={size}
-        draggable={false}
-        className="w-full h-full rounded-full object-cover transition-all duration-300 lg:group-hover:rotate-180"
-      />
-      <h1 className="uppercase text-center text-xs font-bold transiton-all duration-300 group-hover:text-gold">{title}</h1>
-    </div>
+    <div
+  className={cn(
+    "group flex flex-col items-center gap-2 cursor-pointer",
+    className
+  )}
+>
+  <div className="relative w-full max-w-[120px] md:max-w-[180px] aspect-square rounded-full overflow-hidden bg-purple transition-all duration-300 group-hover:ring-4 group-hover:ring-gold">
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      draggable={false}
+      className="object-cover transition-all duration-300 lg:group-hover:rotate-180"
+    />
+  </div>
+
+  <div className="uppercase text-center text-[0.6rem] md:text-[0.7rem] lg:text-[0.8rem] font-bold transition-all duration-300 group-hover:text-gold">
+    {title}
+  </div>
+</div>
   );
 }

@@ -16,13 +16,11 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
   //handling on scroll nav bar bg solid
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 60);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  //disabling scroll when search bar in focus
 
   return (
     <nav
@@ -33,7 +31,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
     >
       <div className="h-20 md:h-24 flex items-center justify-between px-3 md:px-8 lg:px-20">
         {/* Left Side: Logos */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0 md:gap-1">
           <Link href="/" className="relative h-12 md:h-14 lg:h-16 aspect-[3/1]">
             <Image
               src="/Choco Smiley Logo.png"
@@ -63,7 +61,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
         </div>
 
         {/* Center: Links (Desktop) */}
-        <div className="hidden md:flex items-center gap-4 lg:gap-8 text-sm lg:text-lg text-white font-poppins font-[300]">
+        <div className="hidden md:flex items-center gap-4 lg:gap-8 text-sm lg:text-lg text-white font-poppins font-[400]">
           <Link href="/about" className="hover:text-gold transition-colors">
             About
           </Link>
@@ -109,7 +107,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex flex-row items-center gap-4">
+        <div className="md:hidden flex flex-row items-center gap-2">
           <CustomButton
             onClick={onOpenSearch}
             className={`bg-white rounded-full h-7 w-7 md:h-8 md:w-8 lg:h-10 lg:w-10  hover:bg-white/90 transition-all duration-300 ${

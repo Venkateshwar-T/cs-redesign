@@ -5,6 +5,8 @@ import { NavSearchBar } from "./nav-search-bar";
 
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+    //disabling scroll when search bar in focus
     useEffect(() => {
     if (isSearchOpen) {
         document.body.style.overflow = "hidden";

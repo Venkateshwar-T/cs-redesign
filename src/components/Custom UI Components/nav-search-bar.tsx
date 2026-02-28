@@ -32,7 +32,7 @@ const NavSearchBar = React.forwardRef<HTMLInputElement, NavSearchBarProps>(
         
         {/* Wrapper */}
         <div
-          className={`fixed top-20 md:top-24 left-0 right-0 flex justify-center z-50 transition-all duration-300 ${
+          className={`fixed top-20 md:top-28 left-0 right-0 flex justify-center z-50 transition-all duration-300 ${
             isOpen ? "scale-110 opacity-100" : "scale-0 opacity-0 pointer-events-none"
           }`}
         >

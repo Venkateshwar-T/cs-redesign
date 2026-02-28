@@ -33,25 +33,25 @@ export function ReviewSection() {
         <>
           <CustomSectionDivider className="-my-12 md:-my-8" topTitle="SWEET" bottomTitle="COMMENDATIONS." />
           
-          <div className="relative w-full overflow-hidden bg-background py-5 md:py-8">
-          <MarqueeStyles />
+          <div className="relative w-full overflow-hidden bg-background pb-5 md:pb-8 mt-6 md:mt-10">
+            <MarqueeStyles />
 
-          {/* Container that handles the horizontal scroll and pause on hover */}
-          <div className="flex w-max gap-8 px-4 animate-marquee">
-            {infiniteReviews.map((review, idx) => (
-              <ReviewCard
-                key={idx}
-                reviewerName={review.name}
-                reviewText={review.text}
-                stars={review.stars} />
-            ))}
+            {/* Container that handles the horizontal scroll and pause on hover */}
+            <div className="flex w-max gap-8 px-4 animate-marquee mt-12">
+              {infiniteReviews.map((review, idx) => (
+                <ReviewCard
+                  key={idx}
+                  reviewerName={review.name}
+                  reviewText={review.text}
+                  stars={review.stars} />
+              ))}
+            </div>
+
+            {/* Gradient fades for the edges */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background/40 md:from-background/80 to-transparent"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background/40 md:from-background/80 to-transparent"></div>
           </div>
-
-          {/* Gradient fades for the edges */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background/40 md:from-background/80 to-transparent"></div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background/40 md:from-background/80 to-transparent"></div>
-        </div>
-        <p className="text-sm md:text-lg text-gold font-fredoka font-[500]">“Handcrafted with love, just for you”</p>
+        <p className="text-sm md:text-lg text-gold font-fredoka font-[500] pt-8">“Handcrafted with love, just for you”</p>
       </>
     );
 }
