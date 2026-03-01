@@ -128,7 +128,6 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 fill
                                 draggable={false}
                                 priority
-                                quality={10}
                                 className="object-contain object-left"
                             />
                         </div>
@@ -225,7 +224,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                             >
                                 {/* Input Fields */}
                                 <div className="grid grid-cols-1 gap-8">
-                                    <CustomInput placeholder="NAME" type="text" autoComplete="off" autoCorrect="off" spellCheck="false" />
+                                    <CustomInput placeholder="NAME" type="text" autoComplete="nope" autoCorrect="off" spellCheck="false" />
                                     <CustomInput placeholder="EMAIL OR PHONE" type="email" />
                                     <CustomInput placeholder="PASSWORD" type="password" showPasswordToggle />
                                     <CustomInput placeholder="CONFIRM PASSWORD" type="password" showPasswordToggle/>

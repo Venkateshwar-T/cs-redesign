@@ -42,25 +42,32 @@ export function ExploreFlavours() {
 
     return (
         <div className="w-full p-4 md:p-10">
-            <fieldset 
+            <motion.fieldset 
                 ref={ref}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 className={cn(
-                    "relative bg-white/20 border-[0.1rem] md:border-[0.15rem] rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] transition-all duration-700 mb-8",
+                    "relative bg-white/20 border-[0.1rem] md:border-[0.15rem] rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] transition-colors duration-700 mb-8",
                     isInView ? "border-gold shadow-[0_0_20px_rgba(243,207,66,0.2)]" : "border-purple"
                 )}
             >
+                {/* Legend natively breaks the border */}
                 <legend className="ml-10 md:ml-16 lg:ml-24 px-0 relative pointer-events-none">
                     <div className="translate-y-[0.03rem] md:translate-y-[0.01rem] lg:translate-y-[0.06rem] -ml-[5px] -mr-[2px]">
+                        {/* Only this text controls the width of the gap */}
                         <h1 className="text-lg md:text-xl lg:text-2xl font-[600] font-inter italic leading-none whitespace-nowrap">
                             EXPLORE
                         </h1>
+                        {/* Absolute positioning prevents this from widening the legend */}
                         <h1 className="absolute top-full left-0 -mt-1 md:-mt-3 -ml-1 lg:-ml-2 text-xl md:text-2xl lg:text-3xl font-[800] font-inter text-gold leading-none whitespace-nowrap">
                             FLAVOURS
                         </h1>
                     </div>
                 </legend>
-                
-                {/* The stagger variants MUST be on the direct wrapper of the mapped children */}
+
+                {/* Flavour Cards */}                
                 <motion.div 
                     initial="hidden"
                     whileInView="visible"
@@ -90,7 +97,7 @@ export function ExploreFlavours() {
                         );
                     })}
                 </motion.div>
-            </fieldset>
+            </motion.fieldset>
         </div>
     );
 }
