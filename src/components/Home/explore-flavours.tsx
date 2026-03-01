@@ -38,7 +38,7 @@ const flavours = [
 export function ExploreFlavours() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const ref = useRef(null);
-    const isInView = useInView(ref, { amount: 0.2, margin: "0px 0px -5% 0px" });
+    const isInView = useInView(ref, { amount: 0.7, margin: "0px 0px -5% 0px" });
 
     return (
         <div className="w-full p-4 md:p-10">
