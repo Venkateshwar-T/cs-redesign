@@ -11,15 +11,15 @@ const containerVariants: Variants = {
     visible: {
         opacity: 1,
         transition: { 
-            staggerChildren: 0.15,
-            duration: 0.5,
+            staggerChildren: 0.1,
+            duration: 0.4,
             ease: "easeOut"
         }
     }
 };
 
 const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    hidden: { opacity: 0, y: 30, scale: 0.9 },
     visible: { 
         opacity: 1, 
         y: 0, 
@@ -40,14 +40,15 @@ const flavours = [
 export function ExploreFlavours() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const ref = useRef(null);
-    const isInView = useInView(ref, { amount: 0.5, margin: "0px 0px -10% 0px" });
+    // Increased amount sensitivity to trigger animation sooner
+    const isInView = useInView(ref, { amount: 0.2, margin: "0px 0px -5% 0px" });
 
     return (
         <div className="w-full p-4 md:p-10">
             <motion.div
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.1 }}
                 variants={containerVariants}
             >
                 <fieldset 

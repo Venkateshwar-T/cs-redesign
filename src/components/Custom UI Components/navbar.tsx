@@ -72,6 +72,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
                 fill
                 draggable={false}
                 priority
+                unoptimized
                 sizes="(max-width: 768px) 120px,
                         (max-width: 1024px) 170px,
                         200px"
