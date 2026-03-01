@@ -8,7 +8,6 @@ import { cn } from '@/lib/utils';
 export function ExploreFlavours() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const ref = useRef(null);
-    // Increased threshold slightly and added a margin to make the transition smoother
     const isInView = useInView(ref, { amount: 0.5, margin: "0px 0px -10% 0px" });
 
     const flavours = [
@@ -21,24 +20,24 @@ export function ExploreFlavours() {
       ];
 
     const containerVariants = {
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            y: 0,
             transition: { 
-                staggerChildren: 0.1,
-                duration: 0.8,
+                staggerChildren: 0.15,
+                duration: 0.5,
                 ease: "easeOut"
             }
         }
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, scale: 0.8 },
+        hidden: { opacity: 0, y: 20, scale: 0.95 },
         visible: { 
             opacity: 1, 
+            y: 0, 
             scale: 1,
-            transition: { duration: 0.5, ease: "backOut" }
+            transition: { duration: 0.5, ease: "easeOut" }
         }
     };
 
@@ -57,21 +56,17 @@ export function ExploreFlavours() {
                         isInView ? "border-gold shadow-[0_0_20px_rgba(243,207,66,0.2)]" : "border-purple"
                     )}
                 >
-                    {/* Legend natively breaks the border */}
                     <legend className="ml-10 md:ml-16 lg:ml-24 px-0 relative pointer-events-none">
                         <div className="translate-y-[0.03rem] md:translate-y-[0.01rem] lg:translate-y-[0.06rem] -ml-[5px] -mr-[2px]">
-                            {/* Only this text controls the width of the gap */}
                             <h1 className="text-lg md:text-xl lg:text-2xl font-[600] font-inter italic leading-none whitespace-nowrap">
                                 EXPLORE
                             </h1>
-                            {/* Absolute positioning prevents this from widening the legend */}
                             <h1 className="absolute top-full left-0 -mt-1 md:-mt-3 -ml-1 lg:-ml-2 text-xl md:text-2xl lg:text-3xl font-[800] font-inter text-gold leading-none whitespace-nowrap">
                                 FLAVOURS
                             </h1>
                         </div>
                     </legend>
 
-                    {/* Flavour cards */}
                     <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-6 lg:gap-10 p-5 md:p-8 pt-7 md:pt-10">
                         {flavours.map((flavour, index) => {
                             const isDimmed = hoveredIndex !== null && hoveredIndex !== index;
@@ -81,9 +76,10 @@ export function ExploreFlavours() {
                                     variants={itemVariants}
                                     onMouseEnter={() => setHoveredIndex(index)}
                                     onMouseLeave={() => setHoveredIndex(null)}
-                                    className={`transition-all duration-300 ${
-                                        isDimmed ? "!opacity-60 scale-95" : ""
-                                    }`}
+                                    className={cn(
+                                        "transition-all duration-300",
+                                        isDimmed && "opacity-40 scale-95 grayscale-[0.5]"
+                                    )}
                                 >
                                     <FlavourCard
                                         src={flavour.src}
