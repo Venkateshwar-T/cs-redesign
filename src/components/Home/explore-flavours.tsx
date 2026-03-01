@@ -1,11 +1,15 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import FlavourCard from '../Custom UI Components/flavour-card';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 export function ExploreFlavours() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { amount: 0.4 });
+
     const flavours = [
         { src: "/almonds.png", alt: "Roasted Almond", title: <>Roasted<br/>Almond</> },
         { src: "/hazelnut.png", alt: "Hazelnut Crunch", title: <>Hazelnut<br/>Crunch</> },
@@ -31,11 +35,15 @@ export function ExploreFlavours() {
     return (
         <div className="w-full p-4 md:p-10">
             <motion.fieldset 
+                ref={ref}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={containerVariants}
-                className="relative bg-white/20 border-[0.1rem] md:border-[0.15rem] border-purple rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] transition-all duration-300 lg:hover:border-gold mb-8"
+                className={cn(
+                    "relative bg-white/20 border-[0.1rem] md:border-[0.15rem] rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] transition-all duration-500 mb-8",
+                    isInView ? "border-gold shadow-[0_0_15px_rgba(243,207,66,0.3)]" : "border-purple"
+                )}
             >
                 {/* Legend natively breaks the border */}
                 <legend className="ml-10 md:ml-16 lg:ml-24 px-0 relative pointer-events-none">

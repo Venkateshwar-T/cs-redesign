@@ -10,6 +10,10 @@ interface ImageSlideshowProps {
 
 export default function ImageSlideshow({ images, className = "" }: ImageSlideshowProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
 
   useEffect(() => {
     if (!images || images.length === 0) return;
@@ -17,13 +21,40 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
       setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, [images]);
+  }, [images, currentIndex]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }
+    if (isRightSwipe) {
+      setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    }
+  };
 
   if (!images || images.length === 0) return null;
 
   return (
-    <div className={`relative rounded-[1rem] md:rounded-[2rem] w-full h-full overflow-hidden bg-gray-900 ${className}`}>
-      
+    <div 
+      className={`relative rounded-[1rem] md:rounded-[2rem] w-full h-full overflow-hidden bg-gray-900 ${className}`}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       {/* Images */}
       {images.map((src, index) => (
         <Image
@@ -33,8 +64,8 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
           draggable={false}
           fill
           sizes="(max-width: 768px) 280px,
-                      (max-width: 1024px) 320px,
-                      450px"
+                 (max-width: 1024px) 320px,
+                 450px"
           className={`object-cover transition-opacity duration-1000 ease-in-out ${
             index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
           }`}

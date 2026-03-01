@@ -1,10 +1,14 @@
 "use client";
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { CategoryCard } from '../Custom UI Components/category-card';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 export function ExploreCategories() {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { amount: 0.4 });
+
     return (
         <motion.div 
             initial={{ opacity: 0, y: 40 }}
@@ -13,7 +17,13 @@ export function ExploreCategories() {
             transition={{ duration: 0.8 }}
             className="w-full p-4 md:p-10 md:pb-0 lg:pb-10"
         >
-            <fieldset className="relative bg-white/20 border-[0.1rem] md:border-[0.15rem] border-purple rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] transition-all duration-300 lg:hover:border-gold">
+            <fieldset 
+                ref={ref}
+                className={cn(
+                    "relative bg-white/20 border-[0.1rem] md:border-[0.15rem] rounded-[1rem] md:rounded-[1.5rem] lg:rounded-[2rem] transition-all duration-500",
+                    isInView ? "border-gold shadow-[0_0_15px_rgba(243,207,66,0.3)]" : "border-purple"
+                )}
+            >
                 {/* Legend natively breaks the border */}
                 <legend className="ml-10 md:ml-16 lg:ml-24 px-0 relative pointer-events-none">
                     <div className="translate-y-[0.01rem] md:translate-y-[0.01rem] lg:translate-y-[0.06rem] -ml-[5px] -mr-[2px]">

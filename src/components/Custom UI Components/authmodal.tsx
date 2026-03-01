@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, XIcon } from 'lucide-react';
 import { CustomInput } from './custom-input';
 import { CustomButton } from './custom-button';
 
@@ -27,26 +27,31 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 onClick={onClose}
                 className="absolute inset-0 bg-black/60 backdrop-blur-md"
             />
-
             {/* Modal Container */}
             <motion.div 
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                className="relative w-full max-w-xl md:max-w-3xl lg:max-w-4xl max-h-[90vh] md:aspect-[3/2] bg-purple rounded-[1rem] overflow-y-auto md:overflow-hidden shadow-2xl flex flex-col md:flex-row z-10 custom-scrollbar"
+                className="relative w-full max-w-xl md:max-w-4xl lg:max-w-5xl max-h-[90vh] md:aspect-[1/2] bg-purple rounded-[1rem] overflow-y-auto md:overflow-hidden shadow-2xl flex flex-col md:flex-row z-10 custom-scrollbar"
             >
                 {/* Back Arrow */}
                 <button 
                     onClick={onClose}
-                    className="absolute top-4 left-4 md:top-8 md:left-8 text-white hover:text-gold transition-colors z-20"
+                    className="hidden md:block absolute top-8 left-8 text-white hover:text-gold transition-colors z-20"
                 >
                     <ArrowLeft size={24} />
                 </button>
+                <button 
+                    onClick={onClose}
+                    className="md:hidden sticky top-0 ml-auto p-2 text-white z-20"
+                >
+                    <XIcon size={24} />
+                </button>
 
                 {/* Left Side: Branding */}
-                <div className="w-full md:w-[50%] p-6 pt-14 md:p-8 md:px-12 lg:px-24 flex flex-col justify-center text-white relative">
+                <div className="w-full md:w-[50%] p-6 -mt-10 md:mt-0 md:p-8 md:px-12 lg:px-24 flex flex-col justify-center text-white relative">
                     <div className="space-y-3 md:space-y-4">
-                        <div className="relative h-10 md:h-16 aspect-[3/1] ml-2 mb-4 md:mb-10">
+                        <div className="relative h-10 md:h-16 aspect-[3/1] ml-0 md:ml-2 mb-4 md:mb-10">
                             <Image
                                 src="/choco-smiley-logo.png"
                                 alt="Choco Smiley Logo"
@@ -90,13 +95,13 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         </AnimatePresence>
                     </div>
 
-                    <div className="hidden md:block text-white/40 text-[0.6rem] tracking-widest font-poppins mt-4">
+                    <div className="block text-white/40 text-[0.6rem] tracking-widest font-poppins mt-0 md:mt-4">
                         © 2026 Chocosmiley
                     </div>
                 </div>
 
                 {/* Right Side: Form */}
-                <div className="w-full md:w-[50%] p-6 md:p-8 md:px-12 lg:px-24 flex flex-col justify-center">
+                <div className="w-full md:w-[50%] p-6 px-10 md:p-8 md:px-12 lg:px-24 flex flex-col justify-center">
                     <AnimatePresence mode="wait">
                         {isSignIn ? (
                             <motion.div 
@@ -104,9 +109,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="space-y-4 md:space-y-6"
+                                className="space-y-3 md:space-y-2"
                             >
-                                <div className="space-y-6 md:space-y-8">
+                                <div className="space-y-8">
                                     <CustomInput placeholder="Email Address" type="email" />
                                     <div className="space-y-1 md:space-y-2">
                                         <CustomInput placeholder="Password" type="password" showPasswordToggle />
@@ -142,9 +147,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="space-y-4 md:space-y-5"
+                                className="space-y-4 md:space-y-2"
                             >
-                                <div className="grid grid-cols-1 gap-3 md:gap-4">
+                                <div className="grid grid-cols-1 gap-8">
                                     <CustomInput placeholder="Full Name" type="text" />
                                     <CustomInput placeholder="Email Address" type="email" />
                                     <CustomInput placeholder="Password" type="password" showPasswordToggle />
