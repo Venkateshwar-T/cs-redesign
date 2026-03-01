@@ -13,7 +13,10 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  
   const startX = useRef(0);
+  const startY = useRef(0);
+  const isScrolling = useRef<boolean | null>(null);
 
   const extendedImages = [images[images.length - 1], ...images, images[0]];
 
@@ -27,10 +30,10 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
   }, [images, isDragging]);
 
   const handleTransitionEnd = () => {
-    if (currentIndex === 0) {
+    if (currentIndex <= 0) {
       setIsTransitioning(false);
       setCurrentIndex(images.length);
-    } else if (currentIndex === extendedImages.length - 1) {
+    } else if (currentIndex >= extendedImages.length - 1) {
       setIsTransitioning(false);
       setCurrentIndex(1);
     }
@@ -46,22 +49,42 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
   const handleTouchStart = (e: React.TouchEvent | React.MouseEvent) => {
     setIsDragging(true);
     setIsTransitioning(false);
+    isScrolling.current = null;
     startX.current = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    startY.current = 'touches' in e ? e.touches[0].clientY : e.clientY;
   };
 
   const handleTouchMove = (e: React.TouchEvent | React.MouseEvent) => {
     if (!isDragging) return;
     const currentX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    setDragOffset(currentX - startX.current);
+    const currentY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+    
+    const deltaX = currentX - startX.current;
+    const deltaY = currentY - startY.current;
+
+    if (isScrolling.current === null) {
+      isScrolling.current = Math.abs(deltaY) > Math.abs(deltaX);
+    }
+
+    if (isScrolling.current) {
+      setIsDragging(false);
+      return;
+    }
+
+    if (e.cancelable) e.preventDefault();
+    setDragOffset(deltaX);
   };
 
   const handleTouchEnd = () => {
     setIsDragging(false);
     setIsTransitioning(true);
+    
+    if (isScrolling.current) return;
+
     if (dragOffset > 50) {
-      setCurrentIndex((prev) => prev - 1);
+      setCurrentIndex((prev) => Math.max(0, prev - 1));
     } else if (dragOffset < -50) {
-      setCurrentIndex((prev) => prev + 1);
+      setCurrentIndex((prev) => Math.min(extendedImages.length - 1, prev + 1));
     }
     setDragOffset(0);
   };

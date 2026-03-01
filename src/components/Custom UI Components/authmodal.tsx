@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, XIcon } from 'lucide-react';
@@ -15,6 +15,28 @@ interface AuthModalProps {
 export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     const [isSignIn, setIsSignIn] = useState(true);
 
+    useEffect(() => {
+        if (isOpen) {
+            const scrollY = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.width = '100%';
+        } else {
+            const scrollY = document.body.style.top;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            }
+        }
+        return () => {
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+        };
+    }, [isOpen]);
+
     if (!isOpen) return null;
 
     return (
@@ -25,14 +47,14 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={onClose}
-                className="absolute inset-0 bg-black/60 backdrop-blur-md"
+                className="absolute inset-0 bg-black/60 backdrop-blur-md touch-none"
             />
             {/* Modal Container */}
             <motion.div 
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                className="relative w-full max-w-xl md:max-w-4xl lg:max-w-5xl max-h-[90vh] md:aspect-[1/2] bg-purple rounded-[1rem] overflow-y-auto md:overflow-hidden shadow-2xl flex flex-col md:flex-row z-10 custom-scrollbar"
+                className="relative w-full max-w-xl md:max-w-4xl lg:max-w-5xl max-h-[90vh] md:aspect-[1/2] bg-purple rounded-[1rem] overflow-y-auto md:overflow-hidden overscroll-contain shadow-2xl flex flex-col md:flex-row z-10 custom-scrollbar"
             >
                 {/* Back Arrow */}
                 <button 
