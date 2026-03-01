@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 export function ExploreFlavours() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const ref = useRef(null);
-    const isInView = useInView(ref, { amount: 0.4 });
+    const isInView = useInView(ref, { amount: 0.6 });
 
     const flavours = [
         { src: "/almonds.png", alt: "Roasted Almond", title: <>Roasted<br/>Almond</> },

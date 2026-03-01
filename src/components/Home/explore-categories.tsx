@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 export function ExploreCategories() {
     const ref = useRef(null);
-    const isInView = useInView(ref, { amount: 0.4 });
+    const isInView = useInView(ref, { amount: 0.7 });
 
     return (
         <motion.div 

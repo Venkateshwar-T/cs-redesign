@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 interface ImageSlideshowProps {
@@ -9,86 +9,125 @@ interface ImageSlideshowProps {
 }
 
 export default function ImageSlideshow({ images, className = "" }: ImageSlideshowProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const startX = useRef(0);
 
-  const minSwipeDistance = 50;
+  const extendedImages = [images[images.length - 1], ...images, images[0]];
 
   useEffect(() => {
-    if (!images || images.length === 0) return;
+    if (!images || images.length === 0 || isDragging) return;
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
+      setIsTransitioning(true);
+      setCurrentIndex((prev) => prev + 1);
     }, 4000);
     return () => clearInterval(timer);
-  }, [images, currentIndex]);
+  }, [images, isDragging]);
 
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
+  const handleTransitionEnd = () => {
+    if (currentIndex === 0) {
+      setIsTransitioning(false);
+      setCurrentIndex(images.length);
+    } else if (currentIndex === extendedImages.length - 1) {
+      setIsTransitioning(false);
+      setCurrentIndex(1);
+    }
   };
 
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+  useEffect(() => {
+    if (!isTransitioning) {
+      const timer = setTimeout(() => setIsTransitioning(true), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isTransitioning]);
+
+  const handleTouchStart = (e: React.TouchEvent | React.MouseEvent) => {
+    setIsDragging(true);
+    setIsTransitioning(false);
+    startX.current = 'touches' in e ? e.touches[0].clientX : e.clientX;
   };
 
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
+  const handleTouchMove = (e: React.TouchEvent | React.MouseEvent) => {
+    if (!isDragging) return;
+    const currentX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    setDragOffset(currentX - startX.current);
+  };
 
-    if (isLeftSwipe) {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    setIsTransitioning(true);
+    if (dragOffset > 50) {
+      setCurrentIndex((prev) => prev - 1);
+    } else if (dragOffset < -50) {
+      setCurrentIndex((prev) => prev + 1);
     }
-    if (isRightSwipe) {
-      setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-    }
+    setDragOffset(0);
   };
 
   if (!images || images.length === 0) return null;
 
   return (
     <div 
-      className={`relative rounded-[1rem] md:rounded-[2rem] w-full h-full overflow-hidden bg-gray-900 ${className}`}
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
+      className={`relative rounded-[1rem] md:rounded-[2rem] w-full h-full overflow-hidden bg-gray-900 touch-pan-y select-none ${className}`}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onMouseDown={handleTouchStart}
+      onMouseMove={handleTouchMove}
+      onMouseUp={handleTouchEnd}
+      onMouseLeave={() => isDragging && handleTouchEnd()}
     >
-      {/* Images */}
-      {images.map((src, index) => (
-        <Image
-          key={src}
-          src={src}
-          alt={`Slide ${index + 1}`}
-          draggable={false}
-          fill
-          sizes="(max-width: 768px) 280px,
-                 (max-width: 1024px) 320px,
-                 450px"
-          className={`object-cover transition-opacity duration-1000 ease-in-out ${
-            index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-          }`}
-        />
-      ))}
+      <div 
+        className="flex w-full h-full"
+        onTransitionEnd={handleTransitionEnd}
+        style={{
+          transform: `translateX(calc(-${currentIndex * 100}% + ${dragOffset}px))`,
+          transition: isTransitioning && !isDragging ? 'transform 0.5s ease-in-out' : 'none',
+        }}
+      >
+        {extendedImages.map((src, index) => (
+          <div key={`${src}-${index}`} className="relative w-full h-full shrink-0">
+            <Image
+              src={src}
+              alt={`Slide`}
+              draggable={false}
+              fill
+              sizes="(max-width: 768px) 280px, (max-width: 1024px) 320px, 450px"
+              className="object-cover pointer-events-none"
+            />
+          </div>
+        ))}
+      </div>
 
-      {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 pointer-events-none" />
 
-      {/* Indicators */}
       <div className="absolute bottom-4 left-6 md:bottom-7 md:left-8 flex items-center space-x-1 z-20">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            aria-label={`Go to image ${index + 1}`}
-            className={`h-[0.3rem] rounded-md transition-all duration-300 ease-in-out ${
-              index === currentIndex 
-                ? 'w-10 bg-gold' 
-                : 'w-4 bg-white/30 hover:bg-white/60'
-            }`}
-          />
-        ))}
+        {images.map((_, index) => {
+          const visualIndex = currentIndex === 0 
+            ? images.length - 1 
+            : currentIndex === extendedImages.length - 1 
+              ? 0 
+              : currentIndex - 1;
+
+          return (
+            <button
+              key={index}
+              onClick={() => {
+                setIsTransitioning(true);
+                setCurrentIndex(index + 1);
+                setDragOffset(0);
+              }}
+              aria-label={`Go to image ${index + 1}`}
+              className={`h-[0.3rem] rounded-md transition-all duration-300 ease-in-out ${
+                index === visualIndex
+                  ? 'w-10 bg-gold' 
+                  : 'w-4 bg-white/30 hover:bg-white/60'
+              }`}
+            />
+          );
+        })}
       </div>
     </div>
   );
