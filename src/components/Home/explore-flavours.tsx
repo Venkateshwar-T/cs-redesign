@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import FlavourCard from '../Custom UI Components/flavour-card';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, Variants } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 export function ExploreFlavours() {
@@ -19,7 +19,7 @@ export function ExploreFlavours() {
         { src: "/sugarfree.png", alt: "Sugar Free", title: <>Sugar<br/>Free</> },
       ];
 
-    const containerVariants = {
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -31,7 +31,7 @@ export function ExploreFlavours() {
         }
     };
 
-    const itemVariants = {
+    const itemVariants: Variants = {
         hidden: { opacity: 0, y: 20, scale: 0.95 },
         visible: { 
             opacity: 1, 
