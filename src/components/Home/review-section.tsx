@@ -24,7 +24,7 @@ export function ReviewSection() {
     const animationRef = useRef<number>(0);
 
     useEffect(() => {
-        const speed = 0.5;
+        const speed = 0.8; //speed of horizonal motion of reviews
         const animate = () => {
             if (!isDragging && containerRef.current) {
                 const singleSetWidth = containerRef.current.scrollWidth / 2;
@@ -86,8 +86,9 @@ export function ReviewSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="relative w-full overflow-hidden bg-transparent pb-5 md:pb-8 mt-6 md:mt-10"
+            className="relative w-full overflow-hidden pb-5 md:pb-8 mt-6 md:mt-10"
           >
+            {/* Infinite Scroll Container */}
             <div 
               ref={containerRef}
               className={`flex w-max gap-8 px-4 mt-12 select-none touch-pan-y ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
@@ -97,6 +98,7 @@ export function ReviewSection() {
               onPointerLeave={handlePointerUp}
               onPointerCancel={handlePointerUp}
             >
+              {/* Mapping all Reviews */}
               {infiniteReviews.map((review, idx) => (
                 <ReviewCard
                   key={idx}
@@ -107,10 +109,12 @@ export function ReviewSection() {
               ))}
             </div>
 
+            {/* Gradient Overlay */}
             <div className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-24 lg:w-32 bg-gradient-to-r from-background/40 md:from-background/80 to-transparent"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-24 lg:w-32 bg-gradient-to-l from-background/40 md:from-background/80 to-transparent"></div>
           </motion.div>
 
+        {/* Tagline Animation */}
         <motion.p 
           variants={sentenceVariants}
           initial="hidden"

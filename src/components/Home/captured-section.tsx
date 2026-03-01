@@ -10,11 +10,11 @@ type CapturedSectionProps = {
   
 export default function CapturedSection({ images }: CapturedSectionProps) {
   return (
-    
-      <div className="w-full">
-        <CustomSectionDivider className="-ml-[4px] -mr-[1px]" topTitle="CAPTURED" bottomTitle="MOMENTS." />
-        <div className="flex flex-col md:flex-row items-center md:h-[20rem] lg:h-[26rem] w-full justify-between px-5 md:px-10 lg:px-12 gap-6 lg:gap-8 my-12">
 
+    <>
+      <CustomSectionDivider className="-ml-[4px] -mr-[1px]" topTitle="CAPTURED" bottomTitle="MOMENTS." />
+      
+      <div className="flex flex-col md:flex-row items-center md:h-[20rem] lg:h-[26rem] w-full justify-between px-5 md:px-10 lg:px-12 gap-6 lg:gap-8 my-12">
         {/* Text - Sliding from Left */}
         <motion.div
           initial={{ opacity: 0, x: -100 }}
@@ -49,7 +49,7 @@ export default function CapturedSection({ images }: CapturedSectionProps) {
         </motion.div>
 
       </div>
-    </div>
+    </>
     
   );
 }

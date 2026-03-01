@@ -17,6 +17,7 @@ export default function Header() {
         document.body.style.overflow = "";
     };
     }, [isSearchOpen]);
+    
   return (
     <>
       <Navbar onOpenSearch={() => setIsSearchOpen(true)} />

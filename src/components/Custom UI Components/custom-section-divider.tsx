@@ -16,7 +16,7 @@ const CustomSectionDivider = React.forwardRef<HTMLDivElement, CustomSectionDivid
     ...props }, ref) => {
     return (
       <div ref={ref} className="relative flex items-center w-full py-8 -my-12 md:-my-8" {...props}>
-        {/* Left Line */}
+        {/* Left Line with animation*/}
         <motion.div 
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -35,7 +35,7 @@ const CustomSectionDivider = React.forwardRef<HTMLDivElement, CustomSectionDivid
           </h2>
         </div>
 
-        {/* Right Line */}
+        {/* Right Line with animation*/}
         <motion.div 
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}

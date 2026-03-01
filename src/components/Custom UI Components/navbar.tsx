@@ -16,6 +16,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
+  //checking if user scrolled
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
@@ -32,6 +33,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  //disabling scroll when auth pop up or mobile menu in focus
   useEffect(() => {
     if (isAuthModalOpen || mobileMenuOpen) {
       const scrollY = window.scrollY;
@@ -57,7 +59,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
-          isScrolled ? "bg-purple backdrop-md shadow-md" : "bg-transparent"
+          (isScrolled || mobileMenuOpen) ? "bg-purple backdrop-md shadow-md" : "bg-transparent"
         )}
       >
         <div className="h-20 md:h-24 flex items-center justify-between px-3 md:px-8 lg:px-20">
@@ -103,6 +105,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
 
           {/* Right Side: Button and Icons (Desktop) */}
           <div className="hidden md:flex items-center gap-2 lg:gap-3">
+            {/* Search Icon Button (DISPLAYED WHEN USER SCROLLS) */}
             <CustomButton
               onClick={onOpenSearch}
               className={cn(
@@ -113,17 +116,24 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
               <Image src="/search_icon.png" alt="Search icon" width={28} height={28} className="h-5 w-5 lg:h-6 lg:w-6" draggable={false} />
             </CustomButton>
             
+            {/* Enquire Buttons */}
             <CustomButton className="w-28 lg:w-32 rounded-full h-8 lg:h-10 text-xs lg:text-sm">
               Enquire Now
             </CustomButton>
-            <div className="h-6 lg:h-8 w-[0.5px] bg-white"></div>
+
+            {/* Divider */}
+            <div className="h-6 lg:h-8 w-[0.5px] bg-white"/>
+
+            {/* Social Links and Profile Button */}
             <div className="flex items-center gap-2 text-white">
+              {/* Social Links */}
               <a href="#" className="hover:text-gold transition-colors">
                 <FaInstagram className="h-6 w-6 lg:h-7 lg:w-7"/>
               </a>
               <a href="#" className="hover:text-gold transition-colors">
                 <FiFacebook className="h-6 w-6 lg:h-7 lg:w-7"/>
               </a>
+              {/* Profile Button */}
               <button 
                 onClick={() => setIsAuthModalOpen(true)}
                 className="relative h-9 w-9 lg:h-10 lg:w-10 rounded-full border-2 border-transparent hover:border-gold transition-all overflow-hidden"
@@ -142,6 +152,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden flex flex-row items-center gap-2">
+            {/* Search Icon Button (DISPLAYED WHEN USER SCROLLS) */}
             <CustomButton
               onClick={onOpenSearch}
               className={cn(
@@ -151,6 +162,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
             >
               <Image src="/search_icon.png" alt="Search icon" width={28} height={28} className="h-5 w-5 lg:h-6 lg:w-6" draggable={false} />
             </CustomButton>
+            {/* Mobile Menu Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="text-white focus:outline-none"
@@ -164,13 +176,15 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
         <AnimatePresence>
           {mobileMenuOpen && (
             <>
+              {/*Background Overlay */}
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/50 z-40 md:hidden touch-none"
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden touch-none"
                 onClick={() => setMobileMenuOpen(false)}
               />
+              {/* Mobile Menu Container*/}
               <motion.div
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
@@ -178,6 +192,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
                 className="fixed top-0 right-0 bottom-0 bg-purple z-50 md:hidden flex flex-col items-start p-6 w-[70%] font-poppins overscroll-contain"
               >
+                {/* Close Button */}
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="absolute top-4 right-4 text-white hover:text-gold transition-colors"
@@ -245,6 +260,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
         </AnimatePresence>
       </motion.nav>
 
+      {/* Auth Modal */}
       <AnimatePresence>
         {isAuthModalOpen && (
           <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />

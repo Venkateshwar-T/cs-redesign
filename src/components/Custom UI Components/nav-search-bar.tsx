@@ -22,7 +22,7 @@ const NavSearchBar = React.forwardRef<HTMLInputElement, NavSearchBarProps>(
 
     return (
       <>
-        {/* Backdrop */}
+        {/* Background Overlay */}
         <div
           onClick={onClose}
           className={`fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 z-50 ${
@@ -38,7 +38,9 @@ const NavSearchBar = React.forwardRef<HTMLInputElement, NavSearchBarProps>(
         >
           {/* Search Bar */}
           <div className={`flex h-9 md:h-10 lg:h-12 items-center rounded-full bg-white shadow-2xl ring-4 ring-purple px-2 md:px-4 ${className}`}>
+            {/* Search Icon Image */}
             <Image src="/search_icon.png" alt="Search icon" width={28} height={28} draggable={false} />
+            {/* Search Input */}
             <input
               ref={inputRef}
               className="ml-2 md:ml-3 w-full bg-transparent text-sm md:text-lg text-gray-800 placeholder:text-[#818181] font-[500] focus:outline-none"
@@ -49,6 +51,7 @@ const NavSearchBar = React.forwardRef<HTMLInputElement, NavSearchBarProps>(
               spellCheck="false"
               {...props} 
             />
+            {/* Search Button */}
             <CustomButton className="bg-transparent py-1 px-2 text-xs md:text-sm hover:bg-transparent hover:text-purple/90 focus-visible:outline-none">
               SEARCH
             </CustomButton>

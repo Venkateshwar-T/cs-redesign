@@ -11,7 +11,7 @@ interface FlavourCardProps {
 }
 
 export default function FlavourCard({ 
-  src = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200&auto=format&fit=crop", 
+  src = "/choco-smiley-logo.png", 
   alt = "Flavour",
   title = "Flavour",
   className,
@@ -23,6 +23,7 @@ export default function FlavourCard({
     className
   )}
 >
+  {/* Flavour Image */}
   <div className="relative w-full mx-auto max-w-[120px] md:max-w-[180px] aspect-square rounded-full overflow-hidden bg-purple transition-all duration-300 group-hover:ring-4 group-hover:ring-gold">
     <Image
       src={src}
@@ -35,7 +36,7 @@ export default function FlavourCard({
       className="object-cover object-center transition-all duration-300 lg:group-hover:rotate-180"
     />
   </div>
-
+  {/* Title */}
   <div className="uppercase text-center text-[0.6rem] md:text-[0.7rem] lg:text-[0.8rem] font-bold transition-all duration-300 group-hover:text-gold">
     {title}
   </div>

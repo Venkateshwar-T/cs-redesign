@@ -61,7 +61,7 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
     
     const deltaX = currentX - startX.current;
     const deltaY = currentY - startY.current;
-
+    
     if (isScrolling.current === null) {
       isScrolling.current = Math.abs(deltaY) > Math.abs(deltaX);
     }

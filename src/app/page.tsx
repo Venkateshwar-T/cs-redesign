@@ -3,10 +3,8 @@ import { ReviewSection } from "@/components/Home/review-section";
 import CapturedSection from "@/components/Home/captured-section";
 import { ExploreCategories } from "@/components/Home/explore-categories";
 import { ExploreFlavours } from "@/components/Home/explore-flavours";
-import { AuthModal } from "@/components/Custom UI Components/authmodal";
 
 export default function Home() {
-  //const categoryImage = PlaceHolderImages.find(p => p.id === 'category-card-1');
 
   return (
     <main className="flex flex-col items-center">

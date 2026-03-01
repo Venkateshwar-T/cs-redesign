@@ -18,6 +18,7 @@ type AuthView = 'signin' | 'signup' | 'reset';
 export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     const [view, setView] = useState<AuthView>('signin');
 
+    //disabling scroll when auth pop up in focus
     useEffect(() => {
         if (isOpen) {
             const scrollY = window.scrollY;
@@ -42,6 +43,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
     if (!isOpen) return null;
 
+    {/* Render Branding based on view */}
     const renderBranding = () => {
         switch (view) {
             case 'reset':
@@ -68,6 +70,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
         }
     };
 
+    {/* Render Description based on view */}
     const renderDescription = () => {
         switch (view) {
             case 'reset':
@@ -96,7 +99,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
                 className="relative w-full max-w-xl md:max-w-4xl lg:max-w-5xl max-h-[90vh] md:aspect-[1/2] bg-purple rounded-[1rem] overflow-y-auto md:overflow-hidden overscroll-contain shadow-2xl flex flex-col md:flex-row z-10 custom-scrollbar"
             >
-                {/* Back Arrow */}
+                {/* Back Arrow (FOR DESKTOP) */}
                 <button 
                     onClick={() => {
                         if (view === 'reset') setView('signin');
@@ -106,6 +109,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 >
                     <ArrowLeft size={24} />
                 </button>
+                {/* Close Button (FOR MOBILE) */}
                 <button 
                     onClick={onClose}
                     className="md:hidden sticky top-0 ml-auto p-2 text-white z-20"
@@ -116,6 +120,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 {/* Left Side: Branding */}
                 <div className="w-full md:w-[50%] p-6 -mt-10 md:mt-0 md:p-8 md:px-12 lg:px-24 flex flex-col justify-center text-white relative">
                     <div className="space-y-3 md:space-y-4">
+                        {/* Logo */}
                         <div className="relative h-10 md:h-16 aspect-[3/1] ml-0 md:ml-2 mb-4 md:mb-10">
                             <Image
                                 src="/choco-smiley-logo.png"
@@ -126,7 +131,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 className="object-contain object-left"
                             />
                         </div>
-                        
+                        {/* Render Branding with animation based on view */}
                         <div className="space-y-0 md:space-y-1">
                             <AnimatePresence mode="wait">
                                 <motion.div
@@ -139,7 +144,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 </motion.div>
                             </AnimatePresence>
                         </div>
-
+                        {/* Render Description with animation based on view */}
                         <AnimatePresence mode="wait">
                             <motion.p 
                                 key={`${view}-desc`}
@@ -153,13 +158,15 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     </div>
 
                     <div className="block text-white/40 text-[0.6rem] tracking-widest font-poppins mt-0">
-                        © 2026 Chocosmiley
+                        © 2026 Choco Smiley
                     </div>
                 </div>
 
                 {/* Right Side: Form */}
                 <div className="w-full md:w-[50%] p-6 px-10 md:p-8 md:px-12 lg:px-24 flex flex-col justify-center">
                     <AnimatePresence mode="wait">
+
+                        {/* Sign In Form */}
                         {view === 'signin' && (
                             <motion.div 
                                 key="signin-form"
@@ -168,6 +175,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 exit={{ opacity: 0, x: -20 }}
                                 className="space-y-3 md:space-y-2"
                             >
+                                {/* Input Fields */}
                                 <div className="space-y-8">
                                     <CustomInput placeholder="EMAIL OR PHONE" type="email" />
                                     <div className="space-y-1 md:space-y-2">
@@ -183,16 +191,16 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                     </div>
                                 </div>
 
+                                {/* Buttons */}
                                 <CustomButton className="w-full py-2.5 md:py-3" showArrow>Sign In</CustomButton>
-
                                 <div className="flex items-center gap-2 py-1 md:py-2">
                                     <div className="h-[1px] flex-1 bg-white/40" />
                                     <span className="text-[9px] md:text-[10px] text-white/90 font-poppins uppercase tracking-wider">OR</span>
                                     <div className="h-[1px] flex-1 bg-white/40" />
                                 </div>
-
                                 <CustomButton className="w-full bg-white hover:bg-white/90 py-2.5 md:py-3" leadingIcon={<Image src="/google.png" alt="Google" width={16} height={16} draggable={false}/>}>Continue with Google</CustomButton>
 
+                                {/* Switch to Sign Up */}
                                 <p className="text-center text-[10px] md:text-xs text-white/60 pt-2 md:pt-4">
                                     New to ChocoSmiley?{' '}
                                     <button 
@@ -205,6 +213,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                             </motion.div>
                         )}
 
+                        {/* Sign Up Form */}
                         {view === 'signup' && (
                             <motion.div 
                                 key="signup-form"
@@ -213,6 +222,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 exit={{ opacity: 0, x: -20 }}
                                 className="space-y-4 md:space-y-2 lg:space-y-3"
                             >
+                                {/* Input Fields */}
                                 <div className="grid grid-cols-1 gap-8">
                                     <CustomInput placeholder="NAME" type="text" autoComplete="off" autoCorrect="off" spellCheck="false" />
                                     <CustomInput placeholder="EMAIL OR PHONE" type="email" />
@@ -226,16 +236,16 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                     <Link href="" className="text-gold">Privacy Policy</Link>.
                                 </p>
 
+                                {/* Buttons */}
                                 <CustomButton className="w-full py-2.5 md:py-3" showArrow>Create Account</CustomButton>
-
                                 <div className="flex items-center gap-2 py-1">
                                     <div className="h-[1px] flex-1 bg-white/40" />
                                     <span className="text-[9px] md:text-[10px] text-white/90 font-poppins uppercase tracking-wider">OR</span>
                                     <div className="h-[1px] flex-1 bg-white/40" />
                                 </div>
-
                                 <CustomButton className="w-full bg-white hover:bg-white/90 py-2.5 md:py-3" leadingIcon={<Image src="/google.png" alt="Google" width={16} height={16} draggable={false}/>}>Continue with Google</CustomButton>
 
+                                {/* Switch to Sign In */}
                                 <p className="text-center text-[10px] md:text-xs text-white/60 pt-1 md:pt-2">
                                     Already have an account?{' '}
                                     <button 
@@ -248,21 +258,25 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                             </motion.div>
                         )}
 
+                        {/* Reset Password Form */}
                         {view === 'reset' && (
                             <motion.div 
                                 key="reset-form"
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="space-y-6 md:space-y-8"
+                                className="space-y-4"
                             >
-                                <div className="space-y-8 pt-4">
+                                {/* Input Field */}
+                                <div>
                                     <CustomInput placeholder="EMAIL ADDRESS" type="email" />
                                 </div>
 
+                                {/* Button */}
                                 <CustomButton className="w-full py-2.5 md:py-3" showArrow>Send Reset Link</CustomButton>
 
-                                <p className="text-center text-[10px] md:text-xs text-white/60 pt-4">
+                                {/* Switch to Sign In */}
+                                <p className="text-center text-[10px] md:text-xs text-white/60 pt-2">
                                     Remembered your password?{' '}
                                     <button 
                                         onClick={() => setView('signin')}

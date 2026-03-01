@@ -37,12 +37,17 @@ const CustomButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
         ref={ref}
         {...props}
       >
+        {/* Conditional Leading Icon */}
         {leadingIcon && (
           <span className="mr-2 flex items-center">
             {leadingIcon}
           </span>
         )}
+        
+        {/* Text Content */}
         {children}
+
+        {/* Conditional Arrow Icon */}
         {showArrow && (
           <ArrowRight className={cn(
             "ml-2 h-4 w-4 transition-transform duration-200",

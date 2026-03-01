@@ -23,6 +23,7 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
 
     return (
       <div className="relative w-full">
+        {/* Input Field */}
         <input
           ref={ref}
           type={inputType}
@@ -34,7 +35,7 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
           )}
           {...props}
         />
-        
+        {/* Placeholder Text with upward animation*/}
         <label
           className={cn(
             "pointer-events-none absolute transition-all duration-200 z-10",
@@ -46,6 +47,7 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
           {placeholder}
         </label>
 
+        {/* Password Toggle Button (EYE Icon) */}
         {showPasswordToggle && isPassword && (
           <button
             type="button"

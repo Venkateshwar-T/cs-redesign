@@ -34,26 +34,31 @@ const ReviewCard = React.forwardRef<HTMLDivElement, ReviewCardProps>(
         )}
         {...props}
       >
+        {/* Quote Icon */}
         <span 
           className="font-fredoka absolute -top-9 right-0 md:-top-11 md:right-1 text-[8rem] md:text-[10rem] text-gold group-hover:animate-wiggle leading-none select-none pointer-events-none"
         >
           ”
         </span>
-        
+
+        {/* Stars */}
         <div className="flex gap-1">
           {Array.from({ length: Math.max(0, Math.min(stars, 5)) }).map((_, i) => (
             <StarIcon key={i} />
           ))}
         </div>
 
+        {/* Review Text */}
         <p 
           className="font-lora text-purple font-semibold italic text-sm md:text-lg"
         >
           {reviewText}
         </p>
 
+        {/* Divider */}
         <hr className="border-t border-black w-full" />
 
+        {/* Reviewer Details */}
         <div className="flex justify-between items-center w-full">
           <span className="uppercase font-fredoka text-[0.9rem] md:text-[1rem] text-purple font-semibold tracking-wider">{reviewerName}</span>
           <span className="text-[#A3A3A3] text-xs md:text-sm font-medium">Reviewed on Google</span>

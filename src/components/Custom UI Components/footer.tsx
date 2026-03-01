@@ -87,7 +87,7 @@ export function Footer() {
       </div>
       
       <div className="text-center text-xs text-white border-t border-white py-8 font-poppins">
-        © {new Date().getFullYear()} Choco Smiley. All Rights Reserved.
+        © 2026 Choco Smiley. All Rights Reserved.
       </div>
     </footer>
   );
