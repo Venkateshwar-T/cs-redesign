@@ -32,21 +32,23 @@ export function Footer() {
               draggable={false}
               fill
               priority
+              quality={100}
               sizes="(max-width: 768px) 120px,
                       (max-width: 1024px) 170px,
                       200px"
               className="object-contain" />
             </div>
             
-            <p className="mx-4 mb-1 text-white/80 text-xs lg:text-sm z-10">Driven By</p>
+            <p className="mx-4 mb-2 text-white/80 text-xs lg:text-sm">Driven By</p>
             
-            <div className="relative h-24 lg:h-32 aspect-[3/2] -mt-6 -ml-2 md:-ml-4">
+            <div className="relative h-10 lg:h-14 aspect-[3/1]">
               <Image 
               src={'/ruvanto-logo.png'} 
               alt='Ruvanto Logo'
               draggable={false}
               fill
               priority
+              quality={100}
               sizes="(max-width: 768px) 120px,
                       (max-width: 1024px) 170px,
                       200px"

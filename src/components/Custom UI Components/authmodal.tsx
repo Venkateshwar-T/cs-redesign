@@ -128,6 +128,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 fill
                                 draggable={false}
                                 priority
+                                quality={10}
                                 className="object-contain object-left"
                             />
                         </div>
