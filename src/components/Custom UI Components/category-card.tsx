@@ -16,6 +16,10 @@ export function CategoryCard({ title, subtitle, imageSrc, className }: CategoryC
         src={imageSrc}
         alt={title}
         fill
+        priority
+        sizes="(max-width: 768px) 250px,
+             (max-width: 1024px) 400px,
+             500px"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />

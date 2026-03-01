@@ -28,6 +28,9 @@ export default function FlavourCard({
       src={src}
       alt={alt}
       fill
+      sizes="(max-width: 768px) 100px,
+             (max-width: 1024px) 130px,
+             200px"
       draggable={false}
       className="object-cover object-center transition-all duration-300 lg:group-hover:rotate-180"
     />

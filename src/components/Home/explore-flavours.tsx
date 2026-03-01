@@ -29,7 +29,7 @@ export function ExploreFlavours() {
     };
 
     return (
-        <div className="w-full p-6 md:p-10">
+        <div className="w-full p-4 md:p-10">
             <motion.fieldset 
                 initial="hidden"
                 whileInView="visible"
@@ -39,7 +39,7 @@ export function ExploreFlavours() {
             >
                 {/* Legend natively breaks the border */}
                 <legend className="ml-10 md:ml-16 lg:ml-24 px-0 relative pointer-events-none">
-                    <div className="-translate-y-[0.05rem] md:-translate-y-[0.09rem] lg:-translate-y-[0.05rem] -ml-[3px] -mr-[2px]">
+                    <div className="-translate-y-[0.01rem] md:translate-y-[0.01rem] lg:translate-y-[0.06rem] -ml-[5px] -mr-[2px]">
                         {/* Only this text controls the width of the gap now */}
                         <h1 className="text-lg md:text-xl lg:text-2xl font-[600] font-inter italic leading-none whitespace-nowrap">
                             EXPLORE

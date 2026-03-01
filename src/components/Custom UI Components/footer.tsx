@@ -27,10 +27,11 @@ export function Footer() {
             
             <div className="relative h-14 lg:h-16 aspect-[3/1]">
               <Image 
-              src={'/ choco-smiley-logo.png'} 
+              src={'/choco-smiley-logo.png'} 
               alt='Choco Smiley Logo'
               draggable={false}
               fill
+              priority
               sizes="(max-width: 768px) 120px,
                       (max-width: 1024px) 170px,
                       200px"
@@ -45,6 +46,7 @@ export function Footer() {
               alt='Choco Smiley Logo' 
               draggable={false}
               fill
+              priority
               sizes="(max-width: 768px) 120px,
                       (max-width: 1024px) 170px,
                       200px"

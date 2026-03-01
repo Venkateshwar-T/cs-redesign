@@ -32,9 +32,9 @@ export default function ImageSlideshow({ images, className = "" }: ImageSlidesho
           alt={`Slide ${index + 1}`}
           draggable={false}
           fill
-          sizes="(max-width: 768px) 120px,
-                      (max-width: 1024px) 170px,
-                      340px"
+          sizes="(max-width: 768px) 280px,
+                      (max-width: 1024px) 320px,
+                      450px"
           className={`object-cover transition-opacity duration-1000 ease-in-out ${
             index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
           }`}

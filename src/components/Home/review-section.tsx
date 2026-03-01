@@ -53,7 +53,7 @@ export function ReviewSection() {
 
     return (
         <>
-          <CustomSectionDivider className="-ml-[4px] -mr-[4px] lg:-ml-[5px] lg:-mr-[5px]" topTitle="SWEET" bottomTitle="COMMENDATIONS." />
+          <CustomSectionDivider className="-ml-[8px] -mr-[3px] lg:-ml-[11px] lg:-mr-[5px]" topTitle="SWEET" bottomTitle="COMMENDATIONS." />
           
           <motion.div 
             initial={{ opacity: 0 }}
