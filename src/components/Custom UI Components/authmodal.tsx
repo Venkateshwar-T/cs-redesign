@@ -6,14 +6,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, XIcon } from 'lucide-react';
 import { CustomInput } from './custom-input';
 import { CustomButton } from './custom-button';
+import Link from 'next/link';
 
 interface AuthModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
+type AuthView = 'signin' | 'signup' | 'reset';
+
 export function AuthModal({ isOpen, onClose }: AuthModalProps) {
-    const [isSignIn, setIsSignIn] = useState(true);
+    const [view, setView] = useState<AuthView>('signin');
 
     useEffect(() => {
         if (isOpen) {
@@ -39,6 +42,43 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
     if (!isOpen) return null;
 
+    const renderBranding = () => {
+        switch (view) {
+            case 'reset':
+                return (
+                    <>
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium leading-none uppercase">RESET</h1>
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gold leading-none uppercase">ACCESS.</h1>
+                    </>
+                );
+            case 'signup':
+                return (
+                    <>
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium leading-none uppercase">CREATE</h1>
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gold leading-none uppercase">PROFILE.</h1>
+                    </>
+                );
+            default:
+                return (
+                    <>
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium leading-none uppercase">WELCOME</h1>
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gold leading-none uppercase">BACK.</h1>
+                    </>
+                );
+        }
+    };
+
+    const renderDescription = () => {
+        switch (view) {
+            case 'reset':
+                return "Don't worry, it happens. Enter your email and we'll help you get back in.";
+            case 'signup':
+                return "Unlock seamless shopping: Saved addresses, order history, and curated wishlists.";
+            default:
+                return "Sign in to access your rewards, order history and saved favorites.";
+        }
+    };
+
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 lg:p-10">
             {/* Backdrop */}
@@ -58,7 +98,10 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             >
                 {/* Back Arrow */}
                 <button 
-                    onClick={onClose}
+                    onClick={() => {
+                        if (view === 'reset') setView('signin');
+                        else onClose();
+                    }}
                     className="hidden md:block absolute top-8 left-8 text-white hover:text-gold transition-colors z-20"
                 >
                     <ArrowLeft size={24} />
@@ -87,37 +130,29 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         <div className="space-y-0 md:space-y-1">
                             <AnimatePresence mode="wait">
                                 <motion.div
-                                    key={isSignIn ? 'signin-title' : 'signup-title'}
+                                    key={`${view}-title`}
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: 20 }}
                                 >
-                                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium leading-none">
-                                        {isSignIn ? 'WELCOME' : 'CREATE'}
-                                    </h1>
-                                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gold leading-none">
-                                        {isSignIn ? 'BACK.' : 'PROFILE.'}
-                                    </h1>
+                                    {renderBranding()}
                                 </motion.div>
                             </AnimatePresence>
                         </div>
 
                         <AnimatePresence mode="wait">
                             <motion.p 
-                                key={isSignIn ? 'signin-desc' : 'signup-desc'}
+                                key={`${view}-desc`}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 className="text-white/80 text-[10px] md:text-sm font-poppins max-w-xs pb-2 md:pb-4"
                             >
-                                {isSignIn 
-                                    ? "Sign in to access your rewards, order history and saved favorites."
-                                    : "Unlock seamless shopping: Saved addresses, order history, and curated wishlists."
-                                }
+                                {renderDescription()}
                             </motion.p>
                         </AnimatePresence>
                     </div>
 
-                    <div className="block text-white/40 text-[0.6rem] tracking-widest font-poppins mt-0 md:mt-4">
+                    <div className="block text-white/40 text-[0.6rem] tracking-widest font-poppins mt-0">
                         © 2026 Chocosmiley
                     </div>
                 </div>
@@ -125,7 +160,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 {/* Right Side: Form */}
                 <div className="w-full md:w-[50%] p-6 px-10 md:p-8 md:px-12 lg:px-24 flex flex-col justify-center">
                     <AnimatePresence mode="wait">
-                        {isSignIn ? (
+                        {view === 'signin' && (
                             <motion.div 
                                 key="signin-form"
                                 initial={{ opacity: 0, x: 20 }}
@@ -134,11 +169,16 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 className="space-y-3 md:space-y-2"
                             >
                                 <div className="space-y-8">
-                                    <CustomInput placeholder="Email Address" type="email" />
+                                    <CustomInput placeholder="EMAIL OR PHONE" type="email" />
                                     <div className="space-y-1 md:space-y-2">
-                                        <CustomInput placeholder="Password" type="password" showPasswordToggle />
+                                        <CustomInput placeholder="PASSWORD" type="password" showPasswordToggle />
                                         <div className="text-right">
-                                            <button className="text-[10px] md:text-xs text-white/80 hover:text-gold transition-colors">Forgot?</button>
+                                            <button 
+                                                onClick={() => setView('reset')}
+                                                className="text-[10px] md:text-xs text-white/80 hover:text-gold transition-colors"
+                                            >
+                                                Forgot?
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -146,9 +186,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 <CustomButton className="w-full py-2.5 md:py-3" showArrow>Sign In</CustomButton>
 
                                 <div className="flex items-center gap-2 py-1 md:py-2">
-                                    <div className="h-[1px] flex-1 bg-white/80" />
-                                    <span className="text-[9px] md:text-[10px] text-white/80 font-bold font-poppins uppercase tracking-wider">OR</span>
-                                    <div className="h-[1px] flex-1 bg-white/80" />
+                                    <div className="h-[1px] flex-1 bg-white/40" />
+                                    <span className="text-[9px] md:text-[10px] text-white/90 font-poppins uppercase tracking-wider">OR</span>
+                                    <div className="h-[1px] flex-1 bg-white/40" />
                                 </div>
 
                                 <CustomButton className="w-full bg-white hover:bg-white/90 py-2.5 md:py-3" leadingIcon={<Image src="/google.png" alt="Google" width={16} height={16} draggable={false}/>}>Continue with Google</CustomButton>
@@ -156,40 +196,42 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 <p className="text-center text-[10px] md:text-xs text-white/60 pt-2 md:pt-4">
                                     New to ChocoSmiley?{' '}
                                     <button 
-                                        onClick={() => setIsSignIn(false)}
+                                        onClick={() => setView('signup')}
                                         className="text-gold underline underline-offset-4 font-semibold"
                                     >
                                         Sign Up
                                     </button>
                                 </p>
                             </motion.div>
-                        ) : (
+                        )}
+
+                        {view === 'signup' && (
                             <motion.div 
                                 key="signup-form"
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="space-y-4 md:space-y-2"
+                                className="space-y-4 md:space-y-2 lg:space-y-3"
                             >
                                 <div className="grid grid-cols-1 gap-8">
-                                    <CustomInput placeholder="Full Name" type="text" />
-                                    <CustomInput placeholder="Email Address" type="email" />
-                                    <CustomInput placeholder="Password" type="password" showPasswordToggle />
-                                    <CustomInput placeholder="Confirm Password" type="password" />
+                                    <CustomInput placeholder="NAME" type="text" autoComplete="off" autoCorrect="off" spellCheck="false" />
+                                    <CustomInput placeholder="EMAIL OR PHONE" type="email" />
+                                    <CustomInput placeholder="PASSWORD" type="password" showPasswordToggle />
+                                    <CustomInput placeholder="CONFIRM PASSWORD" type="password" showPasswordToggle/>
                                 </div>
 
                                 <p className="text-[9px] md:text-[10px] leading-relaxed text-center text-white/50 font-poppins">
                                     By continuing, you agree to ChocoSmiley’s{' '}
-                                    <span className="text-gold">Terms and Service</span> and acknowledge ChocoSmiley’s{' '}
-                                    <span className="text-gold">Privacy Policy</span>.
+                                    <Link href="" className="text-gold">Terms and Service</Link> and acknowledge ChocoSmiley’s{' '}
+                                    <Link href="" className="text-gold">Privacy Policy</Link>.
                                 </p>
 
                                 <CustomButton className="w-full py-2.5 md:py-3" showArrow>Create Account</CustomButton>
 
                                 <div className="flex items-center gap-2 py-1">
-                                    <div className="h-[1px] flex-1 bg-white/80" />
-                                    <span className="text-[9px] md:text-[10px] text-white/80 font-bold uppercase tracking-wider">OR</span>
-                                    <div className="h-[1px] flex-1 bg-white/80" />
+                                    <div className="h-[1px] flex-1 bg-white/40" />
+                                    <span className="text-[9px] md:text-[10px] text-white/90 font-poppins uppercase tracking-wider">OR</span>
+                                    <div className="h-[1px] flex-1 bg-white/40" />
                                 </div>
 
                                 <CustomButton className="w-full bg-white hover:bg-white/90 py-2.5 md:py-3" leadingIcon={<Image src="/google.png" alt="Google" width={16} height={16} draggable={false}/>}>Continue with Google</CustomButton>
@@ -197,7 +239,33 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 <p className="text-center text-[10px] md:text-xs text-white/60 pt-1 md:pt-2">
                                     Already have an account?{' '}
                                     <button 
-                                        onClick={() => setIsSignIn(true)}
+                                        onClick={() => setView('signin')}
+                                        className="text-gold underline underline-offset-4 font-semibold"
+                                    >
+                                        Sign In
+                                    </button>
+                                </p>
+                            </motion.div>
+                        )}
+
+                        {view === 'reset' && (
+                            <motion.div 
+                                key="reset-form"
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                className="space-y-6 md:space-y-8"
+                            >
+                                <div className="space-y-8 pt-4">
+                                    <CustomInput placeholder="EMAIL ADDRESS" type="email" />
+                                </div>
+
+                                <CustomButton className="w-full py-2.5 md:py-3" showArrow>Send Reset Link</CustomButton>
+
+                                <p className="text-center text-[10px] md:text-xs text-white/60 pt-4">
+                                    Remembered your password?{' '}
+                                    <button 
+                                        onClick={() => setView('signin')}
                                         className="text-gold underline underline-offset-4 font-semibold"
                                     >
                                         Sign In

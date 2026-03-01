@@ -16,7 +16,6 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
-  // handling on scroll nav bar bg solid
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
@@ -33,12 +32,20 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent scroll when auth modal or mobile menu is open
   useEffect(() => {
     if (isAuthModalOpen || mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
     } else {
-      document.body.style.overflow = "";
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     }
   }, [isAuthModalOpen, mobileMenuOpen]);
 
@@ -50,7 +57,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
-          isScrolled ? "bg-purple shadow-md" : "bg-transparent"
+          isScrolled ? "bg-purple backdrop-md shadow-md" : "bg-transparent"
         )}
       >
         <div className="h-20 md:h-24 flex items-center justify-between px-3 md:px-8 lg:px-20">
@@ -161,7 +168,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/50 z-40 md:hidden"
+                className="fixed inset-0 bg-black/50 z-40 md:hidden touch-none"
                 onClick={() => setMobileMenuOpen(false)}
               />
               <motion.div
@@ -169,7 +176,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                className="fixed top-0 right-0 bottom-0 bg-purple z-50 md:hidden flex flex-col items-start p-6 w-[70%] font-poppins"
+                className="fixed top-0 right-0 bottom-0 bg-purple z-50 md:hidden flex flex-col items-start p-6 w-[70%] font-poppins overscroll-contain"
               >
                 <button
                   onClick={() => setMobileMenuOpen(false)}

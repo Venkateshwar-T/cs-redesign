@@ -86,7 +86,7 @@ export function ReviewSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="relative w-full overflow-hidden bg-background pb-5 md:pb-8 mt-6 md:mt-10"
+            className="relative w-full overflow-hidden bg-transparent pb-5 md:pb-8 mt-6 md:mt-10"
           >
             <div 
               ref={containerRef}

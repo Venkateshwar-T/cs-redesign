@@ -1,5 +1,6 @@
 import type {Metadata} from 'next';
 import './globals.css';
+// import Image from "next/image";
 import { Poppins, Fredoka, Lora } from "next/font/google";
 import { Footer } from '@/components/Custom UI Components/footer';
 import Header from '@/components/Custom UI Components/header';
@@ -37,6 +38,16 @@ export default function RootLayout({
       <head>
       </head>
       <body className="font-body antialiased bg-background text-foreground flex flex-col min-h-screen">
+        {/* <div className="fixed inset-0 -z-10">
+          <Image 
+            src="/background.png" 
+            alt="Background" 
+            fill 
+            priority 
+            sizes="100vw" 
+            className="object-cover object-top object-[0%_1.5%]" 
+          />
+        </div> */}
         <Header/>
         <main className='flex-1 pb-16 pt-24 md:pt-36'>
           {children}
