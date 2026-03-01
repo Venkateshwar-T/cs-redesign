@@ -50,6 +50,10 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             className="ml-2 md:ml-3 w-full bg-transparent text-sm md:text-lg text-gray-800 placeholder:text-[#818181] font-[500] focus:outline-none"
+            type="search"
+            autoComplete="off"
+            autoCorrect="off"
+            spellCheck="false"
             {...props} />
           <CustomButton className="bg-transparent py-1 px-2 text-xs md:text-sm hover:bg-transparent hover:text-purple/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple/20">SEARCH</CustomButton>
         </div>
