@@ -39,7 +39,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
         <div className="flex items-center gap-0 md:gap-1">
           <Link href="/" className="relative h-12 md:h-14 lg:h-16 aspect-[3/1]">
             <Image
-              src="/Choco Smiley Logo.png"
+              src="/choco-smiley-logo.png"
               alt="Choco Smiley Logo"
               fill
               draggable={false}
@@ -52,7 +52,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
           </Link>
           <div className="relative h-10 md:h-12 lg:h-14 aspect-[2/1]">
             <Image
-              src="/Online Chocolate Store.png"
+              src="/online-chocolate-store.png"
               alt="Online Chocolate Store"
               fill
               draggable={false}

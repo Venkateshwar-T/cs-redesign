@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['var(--font-inter)'],
+        body: ['var(--font-poppins)'],
         headline: ['Inter', 'sans-serif'],
         code: ['monospace'],
         poppins: ['var(--font-poppins)'],

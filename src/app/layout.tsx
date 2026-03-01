@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
   variable: "--font-poppins",
 });
 const lora = Lora({
@@ -21,7 +21,7 @@ const lora = Lora({
 });
 const fredoka = Fredoka({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-fredoka",
 });
 

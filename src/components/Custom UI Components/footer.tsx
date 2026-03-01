@@ -27,7 +27,7 @@ export function Footer() {
             
             <div className="relative h-14 lg:h-16 aspect-[3/1]">
               <Image 
-              src={'/Choco Smiley Logo.png'} 
+              src={'/ choco-smiley-logo.png'} 
               alt='Choco Smiley Logo'
               draggable={false}
               fill
@@ -41,7 +41,7 @@ export function Footer() {
             
             <div className="relative h-12 lg:h-14 aspect-[3/1]">
               <Image 
-              src={'/Choco Smiley Logo.png'} 
+              src={'/choco-smiley-logo.png'} 
               alt='Choco Smiley Logo' 
               draggable={false}
               fill
@@ -62,9 +62,9 @@ export function Footer() {
           
           <div className="flex flex-col gap-1 md:gap-0">
             <h2 className="font-semibold text-sm lg:text-md pb-1 md:pb-4">Company</h2>
-            <Link href="" className="flex items-center gap-2 font-[300] text-sm hover:text-gold">About Us</Link>
-            <Link href="" className="flex items-center gap-2 font-[300] text-sm hover:text-gold">FAQs</Link>
-            <Link href="" className="flex items-center gap-2 font-[300] text-sm hover:text-gold">Explore</Link>
+            <Link href="" className="flex items-center gap-2 font-[300] text-xs lg:text-sm hover:text-gold">About Us</Link>
+            <Link href="" className="flex items-center gap-2 font-[300] text-xs lg:text-sm hover:text-gold">FAQs</Link>
+            <Link href="" className="flex items-center gap-2 font-[300] text-xs lg:text-sm hover:text-gold">Explore</Link>
           </div>
           
           <div className="flex flex-col gap-1 md:gap-0">
