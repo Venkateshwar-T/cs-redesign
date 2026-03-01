@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, FcGoogle } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { CustomInput } from './custom-input';
 import { CustomButton } from './custom-button';
 
@@ -33,7 +33,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                className="relative w-full max-w-5xl aspect-auto md:aspect-[3/2] bg-purple rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col md:flex-row z-10"
+                className="relative w-full max-w-xl md:max-w-3xl lg:max-w-4xl max-h-[90vh] md:aspect-[3/2] bg-purple rounded-[1rem] overflow-y-auto md:overflow-hidden shadow-2xl flex flex-col md:flex-row z-10 custom-scrollbar"
             >
                 {/* Back Arrow */}
                 <button 
@@ -44,9 +44,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 </button>
 
                 {/* Left Side: Branding */}
-                <div className="w-full md:w-[45%] p-8 md:p-12 lg:p-16 flex flex-col justify-between text-white relative">
-                    <div className="space-y-8">
-                        <div className="relative h-12 md:h-16 aspect-[3/1] -ml-2">
+                <div className="w-full md:w-[50%] p-6 pt-14 md:p-8 md:px-12 lg:px-24 flex flex-col justify-center text-white relative">
+                    <div className="space-y-3 md:space-y-4">
+                        <div className="relative h-10 md:h-16 aspect-[3/1] ml-2 mb-4 md:mb-10">
                             <Image
                                 src="/choco-smiley-logo.png"
                                 alt="Choco Smiley Logo"
@@ -57,7 +57,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                             />
                         </div>
                         
-                        <div className="space-y-1">
+                        <div className="space-y-0 md:space-y-1">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={isSignIn ? 'signin-title' : 'signup-title'}
@@ -65,10 +65,10 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: 20 }}
                                 >
-                                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-none">
+                                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium leading-none">
                                         {isSignIn ? 'WELCOME' : 'CREATE'}
                                     </h1>
-                                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gold leading-none">
+                                    <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gold leading-none">
                                         {isSignIn ? 'BACK.' : 'PROFILE.'}
                                     </h1>
                                 </motion.div>
@@ -80,7 +80,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 key={isSignIn ? 'signin-desc' : 'signup-desc'}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="text-white/80 text-xs md:text-sm font-poppins max-w-xs"
+                                className="text-white/80 text-[10px] md:text-sm font-poppins max-w-xs pb-2 md:pb-4"
                             >
                                 {isSignIn 
                                     ? "Sign in to access your rewards, order history and saved favorites."
@@ -90,13 +90,13 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         </AnimatePresence>
                     </div>
 
-                    <div className="hidden md:block text-white/40 text-[0.6rem] uppercase tracking-widest font-poppins">
-                        © 2025 Chocosmiley
+                    <div className="hidden md:block text-white/40 text-[0.6rem] tracking-widest font-poppins mt-4">
+                        © 2026 Chocosmiley
                     </div>
                 </div>
 
                 {/* Right Side: Form */}
-                <div className="w-full md:w-[55%] bg-white/5 md:bg-white/10 backdrop-blur-sm p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+                <div className="w-full md:w-[50%] p-6 md:p-8 md:px-12 lg:px-24 flex flex-col justify-center">
                     <AnimatePresence mode="wait">
                         {isSignIn ? (
                             <motion.div 
@@ -104,32 +104,29 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="space-y-6"
+                                className="space-y-4 md:space-y-6"
                             >
-                                <div className="space-y-4">
+                                <div className="space-y-6 md:space-y-8">
                                     <CustomInput placeholder="Email Address" type="email" />
-                                    <div className="space-y-2">
+                                    <div className="space-y-1 md:space-y-2">
                                         <CustomInput placeholder="Password" type="password" showPasswordToggle />
                                         <div className="text-right">
-                                            <button className="text-xs text-white/60 hover:text-gold transition-colors">Forgot?</button>
+                                            <button className="text-[10px] md:text-xs text-white/80 hover:text-gold transition-colors">Forgot?</button>
                                         </div>
                                     </div>
                                 </div>
 
-                                <CustomButton className="w-full py-4 text-md uppercase tracking-wider">Sign In</CustomButton>
+                                <CustomButton className="w-full py-2.5 md:py-3" showArrow>Sign In</CustomButton>
 
-                                <div className="flex items-center gap-4 py-2">
-                                    <div className="h-[1px] flex-1 bg-white/20" />
-                                    <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">OR</span>
-                                    <div className="h-[1px] flex-1 bg-white/20" />
+                                <div className="flex items-center gap-2 py-1 md:py-2">
+                                    <div className="h-[1px] flex-1 bg-white/80" />
+                                    <span className="text-[9px] md:text-[10px] text-white/80 font-bold font-poppins uppercase tracking-wider">OR</span>
+                                    <div className="h-[1px] flex-1 bg-white/80" />
                                 </div>
 
-                                <button className="w-full bg-white text-purple rounded-xl py-3 flex items-center justify-center gap-3 text-sm font-semibold hover:bg-white/90 transition-all active:scale-[0.98]">
-                                    <Image src="https://picsum.photos/seed/google/24/24" width={20} height={20} alt="Google" className="rounded-full" />
-                                    Continue with Google
-                                </button>
+                                <CustomButton className="w-full bg-white hover:bg-white/90 py-2.5 md:py-3" leadingIcon={<Image src="/google.png" alt="Google" width={16} height={16} draggable={false}/>}>Continue with Google</CustomButton>
 
-                                <p className="text-center text-xs text-white/60 pt-4">
+                                <p className="text-center text-[10px] md:text-xs text-white/60 pt-2 md:pt-4">
                                     New to ChocoSmiley?{' '}
                                     <button 
                                         onClick={() => setIsSignIn(false)}
@@ -145,35 +142,32 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="space-y-5"
+                                className="space-y-4 md:space-y-5"
                             >
-                                <div className="grid grid-cols-1 gap-4">
+                                <div className="grid grid-cols-1 gap-3 md:gap-4">
                                     <CustomInput placeholder="Full Name" type="text" />
                                     <CustomInput placeholder="Email Address" type="email" />
                                     <CustomInput placeholder="Password" type="password" showPasswordToggle />
                                     <CustomInput placeholder="Confirm Password" type="password" />
                                 </div>
 
-                                <p className="text-[10px] leading-relaxed text-white/50 font-poppins">
+                                <p className="text-[9px] md:text-[10px] leading-relaxed text-center text-white/50 font-poppins">
                                     By continuing, you agree to ChocoSmiley’s{' '}
                                     <span className="text-gold">Terms and Service</span> and acknowledge ChocoSmiley’s{' '}
                                     <span className="text-gold">Privacy Policy</span>.
                                 </p>
 
-                                <CustomButton className="w-full py-4 text-md uppercase tracking-wider">Create Account</CustomButton>
+                                <CustomButton className="w-full py-2.5 md:py-3" showArrow>Create Account</CustomButton>
 
-                                <div className="flex items-center gap-4 py-1">
-                                    <div className="h-[1px] flex-1 bg-white/20" />
-                                    <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">OR</span>
-                                    <div className="h-[1px] flex-1 bg-white/20" />
+                                <div className="flex items-center gap-2 py-1">
+                                    <div className="h-[1px] flex-1 bg-white/80" />
+                                    <span className="text-[9px] md:text-[10px] text-white/80 font-bold uppercase tracking-wider">OR</span>
+                                    <div className="h-[1px] flex-1 bg-white/80" />
                                 </div>
 
-                                <button className="w-full bg-white text-purple rounded-xl py-3 flex items-center justify-center gap-3 text-sm font-semibold hover:bg-white/90 transition-all active:scale-[0.98]">
-                                    <Image src="https://picsum.photos/seed/google/24/24" width={20} height={20} alt="Google" className="rounded-full" />
-                                    Continue with Google
-                                </button>
+                                <CustomButton className="w-full bg-white hover:bg-white/90 py-2.5 md:py-3" leadingIcon={<Image src="/google.png" alt="Google" width={16} height={16} draggable={false}/>}>Continue with Google</CustomButton>
 
-                                <p className="text-center text-xs text-white/60 pt-2">
+                                <p className="text-center text-[10px] md:text-xs text-white/60 pt-1 md:pt-2">
                                     Already have an account?{' '}
                                     <button 
                                         onClick={() => setIsSignIn(true)}
