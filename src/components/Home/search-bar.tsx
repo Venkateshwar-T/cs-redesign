@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { CustomButton } from "../Custom UI Components/custom-button";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export interface SearchBarProps
@@ -12,29 +12,23 @@ export interface SearchBarProps
 const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
   ({ className, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false);
-    const scrollPos = useRef(0);
 
     // Robust scroll locking for Home Search Bar
     useEffect(() => {
       if (isFocused) {
-        scrollPos.current = window.scrollY;
+        const scrollY = window.scrollY;
         document.body.style.position = 'fixed';
-        document.body.style.top = `-${scrollPos.current}px`;
+        document.body.style.top = `-${scrollY}px`;
         document.body.style.width = '100%';
       } else {
-        const wasFixed = document.body.style.position === 'fixed';
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        if (wasFixed) {
-          window.scrollTo(0, scrollPos.current);
+        const scrollY = document.body.style.top;
+        if (scrollY && document.body.style.position === 'fixed') {
+          document.body.style.position = '';
+          document.body.style.top = '';
+          document.body.style.width = '';
+          window.scrollTo(0, parseInt(scrollY || '0') * -1);
         }
       }
-      return () => {
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-      };
     }, [isFocused]);
     
     return (

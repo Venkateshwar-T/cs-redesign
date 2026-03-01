@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CustomButton } from './custom-button';
@@ -15,7 +15,6 @@ export function Navbar({ onOpenSearch, isSearchOpen }: { onOpenSearch: () => voi
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const scrollPos = useRef(0);
 
   // checking if user scrolled
   useEffect(() => {
@@ -34,24 +33,23 @@ export function Navbar({ onOpenSearch, isSearchOpen }: { onOpenSearch: () => voi
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // disabling scroll when auth pop up or mobile menu in focus
+  // disabling scroll when mobile menu in focus
   useEffect(() => {
-    const isLocked = isAuthModalOpen || mobileMenuOpen;
-    if (isLocked) {
-      scrollPos.current = window.scrollY;
+    if (mobileMenuOpen) {
+      const scrollY = window.scrollY;
       document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollPos.current}px`;
+      document.body.style.top = `-${scrollY}px`;
       document.body.style.width = '100%';
     } else {
-      const wasFixed = document.body.style.position === 'fixed';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      if (wasFixed) {
-        window.scrollTo(0, scrollPos.current);
+      const scrollY = document.body.style.top;
+      if (scrollY && document.body.style.position === 'fixed') {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
       }
     }
-  }, [isAuthModalOpen, mobileMenuOpen]);
+  }, [mobileMenuOpen]);
 
   return (
     <>

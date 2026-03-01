@@ -18,7 +18,7 @@ type AuthView = 'signin' | 'signup' | 'reset';
 export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     const [view, setView] = useState<AuthView>('signin');
 
-    //disabling scroll when auth pop up in focus
+    // Robust scroll locking for Auth Modal
     useEffect(() => {
         if (isOpen) {
             const scrollY = window.scrollY;
@@ -27,18 +27,13 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             document.body.style.width = '100%';
         } else {
             const scrollY = document.body.style.top;
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            if (scrollY) {
+            if (scrollY && document.body.style.position === 'fixed') {
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
                 window.scrollTo(0, parseInt(scrollY || '0') * -1);
             }
         }
-        return () => {
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-        };
     }, [isOpen]);
 
     if (!isOpen) return null;

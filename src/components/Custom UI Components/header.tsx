@@ -1,35 +1,27 @@
 'use client';
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "./navbar";
 import { NavSearchBar } from "./nav-search-bar";
 
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const scrollPos = useRef(0);
 
   // Robust scroll locking for Nav Search Bar
   useEffect(() => {
     if (isSearchOpen) {
-      scrollPos.current = window.scrollY;
+      const scrollY = window.scrollY;
       document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollPos.current}px`;
+      document.body.style.top = `-${scrollY}px`;
       document.body.style.width = '100%';
     } else {
-      const wasFixed = document.body.style.position === 'fixed';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      
-      if (wasFixed) {
-        window.scrollTo(0, scrollPos.current);
+      const scrollY = document.body.style.top;
+      if (scrollY && document.body.style.position === 'fixed') {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
       }
     }
-    return () => {
-      // Cleanup on unmount
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-    };
   }, [isSearchOpen]);
     
   return (
