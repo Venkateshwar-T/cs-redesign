@@ -38,12 +38,12 @@ export function Footer() {
               className="object-contain" />
             </div>
             
-            <p className="mx-4 mb-1 text-white/80 text-xs lg:text-sm">Driven By</p>
+            <p className="mx-4 mb-1 text-white/80 text-xs lg:text-sm z-10">Driven By</p>
             
-            <div className="relative h-12 lg:h-14 aspect-[3/1]">
+            <div className="relative h-24 lg:h-32 aspect-[3/2] -mt-6 -ml-2 md:-ml-2">
               <Image 
-              src={'/choco-smiley-logo.png'} 
-              alt='Choco Smiley Logo' 
+              src={'/ruvanto-logo.png'} 
+              alt='Choco Smiley Logo'
               draggable={false}
               fill
               priority
