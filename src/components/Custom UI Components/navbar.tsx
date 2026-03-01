@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CustomButton } from './custom-button';
@@ -11,12 +11,13 @@ import { Menu, X, User, HelpCircle, ShieldCheck, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AuthModal } from './authmodal';
 
-export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
+export function Navbar({ onOpenSearch, isSearchOpen }: { onOpenSearch: () => void; isSearchOpen?: boolean }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const scrollPos = useRef(0);
 
-  //checking if user scrolled
+  // checking if user scrolled
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
@@ -33,20 +34,21 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  //disabling scroll when auth pop up or mobile menu in focus
+  // disabling scroll when auth pop up or mobile menu in focus
   useEffect(() => {
-    if (isAuthModalOpen || mobileMenuOpen) {
-      const scrollY = window.scrollY;
+    const isLocked = isAuthModalOpen || mobileMenuOpen;
+    if (isLocked) {
+      scrollPos.current = window.scrollY;
       document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
+      document.body.style.top = `-${scrollPos.current}px`;
       document.body.style.width = '100%';
     } else {
-      const scrollY = document.body.style.top;
+      const wasFixed = document.body.style.position === 'fixed';
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      if (wasFixed) {
+        window.scrollTo(0, scrollPos.current);
       }
     }
   }, [isAuthModalOpen, mobileMenuOpen]);
@@ -59,7 +61,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
-          (isScrolled || mobileMenuOpen) ? "bg-purple backdrop-md shadow-md" : "bg-transparent"
+          (isScrolled || mobileMenuOpen || isSearchOpen) ? "bg-purple backdrop-md shadow-md" : "bg-transparent"
         )}
       >
         <div className="h-20 md:h-24 flex items-center justify-between px-3 md:px-8 lg:px-20">
@@ -111,7 +113,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
               onClick={onOpenSearch}
               className={cn(
                 "bg-white rounded-full md:h-8 md:w-8 lg:h-10 lg:w-10 hover:bg-white/90 transition-all duration-300",
-                isScrolled ? "opacity-100 scale-100" : "opacity-0 scale-0 pointer-events-none"
+                (isScrolled || isSearchOpen) ? "opacity-100 scale-100" : "opacity-0 scale-0 pointer-events-none"
               )}
             >
               <Image src="/search_icon.png" alt="Search icon" width={28} height={28} className="h-5 w-5 lg:h-6 lg:w-6" draggable={false} />
@@ -158,7 +160,7 @@ export function Navbar({ onOpenSearch }: { onOpenSearch: () => void }) {
               onClick={onOpenSearch}
               className={cn(
                 "bg-white rounded-full h-7 w-7 md:h-8 md:w-8 lg:h-10 lg:w-10 hover:bg-white/90 transition-all duration-300",
-                isScrolled ? "opacity-100 scale-100" : "opacity-0 scale-0 pointer-events-none"
+                (isScrolled || isSearchOpen) ? "opacity-100 scale-100" : "opacity-0 scale-0 pointer-events-none"
               )}
             >
               <Image src="/search_icon.png" alt="Search icon" width={28} height={28} className="h-5 w-5 lg:h-6 lg:w-6" draggable={false} />

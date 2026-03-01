@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { CustomButton } from "../Custom UI Components/custom-button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 
 export interface SearchBarProps
@@ -12,21 +12,22 @@ export interface SearchBarProps
 const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
   ({ className, ...props }, ref) => {
     const [isFocused, setIsFocused] = useState(false);
+    const scrollPos = useRef(0);
 
-    //disabling scroll when search bar in focus
+    // Robust scroll locking for Home Search Bar
     useEffect(() => {
       if (isFocused) {
-        const scrollY = window.scrollY;
+        scrollPos.current = window.scrollY;
         document.body.style.position = 'fixed';
-        document.body.style.top = `-${scrollY}px`;
+        document.body.style.top = `-${scrollPos.current}px`;
         document.body.style.width = '100%';
       } else {
-        const scrollY = document.body.style.top;
+        const wasFixed = document.body.style.position === 'fixed';
         document.body.style.position = '';
         document.body.style.top = '';
         document.body.style.width = '';
-        if (scrollY) {
-            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        if (wasFixed) {
+          window.scrollTo(0, scrollPos.current);
         }
       }
       return () => {
